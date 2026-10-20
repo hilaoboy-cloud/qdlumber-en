@@ -68,12 +68,14 @@ section{padding:72px 0}
 
 /* ---------- cards & grids ---------- */
 .grid{display:grid;gap:26px}
+.g5{grid-template-columns:repeat(5,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g2{grid-template-columns:repeat(2,1fr)}
 .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);overflow:hidden;box-shadow:0 4px 14px rgba(11,43,28,.06);transition:transform .2s,box-shadow .2s}
 .card:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
 .card .ph{aspect-ratio:16/10;overflow:hidden;background:var(--soft)}
+.card .ph.portrait{aspect-ratio:3/4}
 .card .ph img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
 .card:hover .ph img{transform:scale(1.04)}
 .card .bd{padding:24px}
@@ -159,6 +161,7 @@ section{padding:72px 0}
 .to-top.show{display:flex}
 
 @media(max-width:960px){
+  .g5{grid-template-columns:repeat(3,1fr)}
   .g4{grid-template-columns:repeat(2,1fr)}
   .g3{grid-template-columns:1fr 1fr}
   .split{grid-template-columns:1fr}
@@ -173,7 +176,7 @@ section{padding:72px 0}
   .main-nav a.nav-link{padding:12px 4px;border-bottom:1px solid var(--line)}
   .drop{position:static;display:block;box-shadow:none;border:none;padding:0 0 0 12px}
   .burger{display:block}
-  .g4,.g3,.g2{grid-template-columns:1fr}
+  .g5,.g4,.g3,.g2{grid-template-columns:1fr}
   .form-grid{grid-template-columns:1fr}
   .footer-grid{grid-template-columns:1fr}
   .rfq{padding:28px 20px}

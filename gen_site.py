@@ -169,6 +169,27 @@ def build_home():
       <h3>{n}</h3><p>{d}</p>
       <p style="margin-top:12px;font-weight:700;color:var(--g600)">Learn more →</p>
     </a>"""
+    values = [
+        ("values-precision.webp", "Engineer designing a custom wooden crate in 3D CAD software",
+         "Proven OEM Expertise",
+         "Consistent, high-precision packaging solutions backed by over two decades of experience in complex OEM projects."),
+        ("values-efficiency.webp", "Digital logistics dashboard monitoring OEM packaging production and shipment schedules",
+         "Scalable Production Capacity",
+         "Flexible manufacturing supporting both high-volume production and customized OEM programs with reliable lead times."),
+        ("values-accountability.webp", "Forklift loading ISPM-15 wooden crates into a shipping container for export",
+         "Export-Ready Standards",
+         "All solid woods are heat-treated and certified to meet international shipping regulations and customs requirements."),
+        ("values-partnership.webp", "Qingdao Lumber engineer reviewing an export wooden crate with a client at the factory",
+         "Global OEM Programs Support",
+         "Designed to maximize container space and reduce shipping costs, with ISPM-15 compliant materials for seamless global export."),
+        ("values-reliability.webp", "Two workers inspecting a finished large wooden crate before shipment",
+         "Quality You Can Rely On",
+         "Strict in-process inspection and disciplined execution — consistent quality you can depend on, shipment after shipment."),
+    ]
+    value_cards = "\n".join(
+        f'''    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/{fn}" alt="{alt}" loading="lazy"></div>
+      <div class="bd"><h3>{t}</h3><p>{d}</p></div></div>'''
+        for fn, alt, t, d in values)
     body = f"""
 <section class="hero"><div class="wrap">
   <div class="hero-inner reveal in">
@@ -185,11 +206,7 @@ def build_home():
 <section><div class="wrap">
   <h2 class="section-title reveal">Why Global OEMs Choose Us</h2>
   <p class="section-sub reveal">Precision manufacturing, disciplined process control, and export-ready logistics — built for demanding industrial programs.</p>
-  <div class="grid g4">
-    <div class="tcard reveal"><h3>Proven OEM Expertise</h3><p>Consistent, high-precision packaging solutions backed by over two decades of experience in complex OEM projects.</p></div>
-    <div class="tcard reveal"><h3>Scalable Production Capacity</h3><p>Flexible manufacturing supporting both high-volume production and customized OEM programs with reliable lead times.</p></div>
-    <div class="tcard reveal"><h3>Export-Ready Standards</h3><p>All solid woods are heat-treated and certified to meet international shipping regulations and customs requirements.</p></div>
-    <div class="tcard reveal"><h3>Global OEM Programs Support</h3><p>Designed to maximize container space and reduce shipping costs, with ISPM-15 compliant materials for seamless global export.</p></div>
+  <div class="grid g5">{value_cards}
   </div>
 </div></section>
 
@@ -237,6 +254,22 @@ def build_solutions():
              "acceptedAnswer": {"@type": "Answer", "text": "Product dimensions and weight, fragility and handling requirements, shipment mode and destination, order quantities, and drawings or samples if available."}},
         ]}
     extra = f'\n<script type="application/ld+json">{json.dumps(faq_json, ensure_ascii=False)}</script>'
+    products = [
+        ("solutions-wood-elements.webp", "Large structural timber panels staged on the factory floor for custom crate builds",
+         "Custom Wooden Crates", "Built to your drawings — every dimension, every joint, every component."),
+        ("solutions-server-crates.webp", "Wooden server crate with access ramp inside a warehouse",
+         "Server Crates", "Shock-resistant crating for servers, racks and data center equipment."),
+        ("solutions-battery-crates.webp", "Tall open-top wooden crate for battery units outdoors",
+         "Battery & Energy Storage Crates", "UN38.3-compliant heavy-duty packaging for battery packs and charging stations."),
+        ("solutions-plywood-panels.webp", "Precision cutting machine processing plywood panels",
+         "Precision Panel Processing", "CNC-cut plywood panels with tight dimensional tolerances."),
+        ("solutions-cnc-parts.webp", "CNC-machined wooden components for crate assembly",
+         "CNC Wood Components", "Precision-machined wooden parts for engineered crate systems."),
+    ]
+    product_cards = "\n".join(
+        f'''    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/{fn}" alt="{alt}" loading="lazy"></div>
+      <div class="bd"><h3>{t}</h3><p>{d}</p></div></div>'''
+        for fn, alt, t, d in products)
     body = f"""
 <div class="page-hero"><div class="wrap">
   <div class="breadcrumb"><a href="{rel}">Home</a> / Solutions</div>
@@ -247,12 +280,14 @@ def build_solutions():
 <section><div class="wrap">
   <h2 class="section-title reveal">Industrial Crating Solutions</h2>
   <p class="section-sub reveal">Heavy-duty engineered crating systems designed to protect large, sensitive, and high-value industrial equipment during global transportation. Built for structural strength, stability, and export compliance, our solutions perform reliably under complex logistics and handling conditions.</p>
+  <div class="grid g3">{product_cards}
+  </div>
 
   <h2 class="section-title reveal" style="margin-top:56px">Metal Components &amp; Knockdown Kit Systems</h2>
   <p class="section-sub reveal">Engineered wood and metal-based modular packaging systems designed for efficient assembly, structural strength, and optimized global logistics performance. Fully customized OEM solutions ensure precise fit, reduced shipping volume, and consistent performance across industrial applications.</p>
 
   <div class="split reveal" style="margin-bottom:56px">
-    <div class="ph"><img src="{rel}assets/img/knockdown-kits-flatpack.webp" alt="Stacked flat-pack knockdown wooden crate kits with metal frames" loading="lazy" width="800" height="600"></div>
+    <div class="ph"><img src="{rel}assets/img/solutions-knockdown-kits.webp" alt="Flat-pack knockdown wooden crate kits with metal frames stacked in the factory" loading="lazy" width="800" height="600"></div>
     <div>
       <h3>Knockdown Crate Kits</h3>
       <p><em>Engineered OEM flat-pack packaging systems combining precision wood panels and structural metal components for efficient on-site assembly at destination.</em></p>
@@ -273,11 +308,11 @@ def build_solutions():
         <li>Built for demanding industrial and export environments: durable performance under vibration, dynamic loads, and multi-modal logistics conditions.</li>
       </ul>
     </div>
-    <div class="ph"><img src="{rel}assets/img/factory-lifting-frame.webp" alt="Overhead yellow lifting frame handling palletized wooden crate components in factory" loading="lazy" width="900" height="506"></div>
+    <div class="ph"><img src="{rel}assets/img/solutions-metal-components.webp" alt="Yellow lifting frame moving wooden crate components in the factory" loading="lazy" width="800" height="450"></div>
   </div>
 
   <div class="split reveal">
-    <div class="ph"><img src="{rel}assets/img/metal-reinforcement-channels.webp" alt="Perforated galvanized steel reinforcement channels on plywood panels" loading="lazy" width="1251" height="1494"></div>
+    <div class="ph"><img src="{rel}assets/img/solutions-fastening-systems.webp" alt="Custom metal reinforcement plates for structural crate fastening" loading="lazy" width="800" height="956"></div>
     <div>
       <h3>Connection &amp; Fastening Systems</h3>
       <p><em>Custom-engineered sheet metal reinforcement plates designed for structural strengthening in industrial crate systems.</em></p>
@@ -331,8 +366,23 @@ def build_capabilities():
   <p class="section-sub reveal">We deliver integrated OEM packaging solutions by combining precision manufacturing, custom engineering, and efficient global logistics. From individual components to complete knockdown crate systems, we ensure quality, consistency, and scalable performance for international industrial packaging programs.</p>
 
   <div class="grid g2" style="margin-top:8px">
-    <div class="tcard reveal"><h3>Certifications &amp; Compliance</h3><p>We comply with international packaging and export standards to support global shipping requirements. All wood materials are ISPM-15 certified and properly heat-treated, with full documentation support for international logistics.</p></div>
-    <div class="tcard reveal"><h3>Advanced Manufacturing Processes</h3><p>Our manufacturing capabilities include CNC machining, precision cutting, drilling, and routing for wood components. For metal fabrication, we use laser cutting, forming, bending, and robotic welding processes. Surface treatments such as polishing, galvanizing, and coating enhance durability and corrosion resistance. These integrated processes ensure every component meets exact specifications and performs reliably under real-world logistics conditions.</p></div>
+    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/capabilities-quality-assurance.webp" alt="Quality inspector holding a checklist beside finished wooden crates" loading="lazy"></div>
+      <div class="bd"><h3>Certifications &amp; Compliance</h3><p>We comply with international packaging and export standards to support global shipping requirements. All wood materials are ISPM-15 certified and properly heat-treated, with full documentation support for international logistics.</p></div></div>
+    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/capabilities-wood-metal.webp" alt="Close-up of metal fasteners on the edge of plywood crate panels" loading="lazy"></div>
+      <div class="bd"><h3>Advanced Manufacturing Processes</h3><p>Our manufacturing capabilities include CNC machining, precision cutting, drilling, and routing for wood components. For metal fabrication, we use laser cutting, forming, bending, and robotic welding processes. Surface treatments such as polishing, galvanizing, and coating enhance durability and corrosion resistance. These integrated processes ensure every component meets exact specifications and performs reliably under real-world logistics conditions.</p></div></div>
+  </div>
+
+  <h2 class="section-title reveal" style="margin-top:64px">Integrated Capabilities</h2>
+  <p class="section-sub reveal">One partner for the full journey — from engineering review to container loading.</p>
+  <div class="grid g4">
+    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/capabilities-oem-engineering.webp" alt="Open custom-built wooden crate showing its engineered internal structure" loading="lazy"></div>
+      <div class="bd"><h3>OEM Engineering</h3><p>Crate systems engineered from your drawings for strength, stability and logistics efficiency.</p></div></div>
+    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/capabilities-knockdown-systems.webp" alt="Flat-pack wooden crate kits stacked on a pallet" loading="lazy"></div>
+      <div class="bd"><h3>Knockdown Crate Systems</h3><p>Flat-pack kits with metal frames for efficient on-site assembly and lower freight cost.</p></div></div>
+    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/capabilities-production-capacity.webp" alt="Worker stacking freshly cut wooden boards in the factory" loading="lazy"></div>
+      <div class="bd"><h3>Scalable Production Capacity</h3><p>Flexible manufacturing supporting high-volume OEM programs with reliable lead times.</p></div></div>
+    <div class="card reveal"><div class="ph"><img src="{rel}assets/img/capabilities-logistics-support.webp" alt="Forklift loading crates into a shipping container at dusk" loading="lazy"></div>
+      <div class="bd"><h3>Global Logistics Support</h3><p>Export-ready packing, container loading and ISPM-15 documentation for worldwide delivery.</p></div></div>
   </div>
 </div></section>
 
@@ -360,6 +410,29 @@ def build_capabilities():
 # ================= ABOUT =================
 def build_about():
     rel = "../"
+    steps = [
+        ("about-engineering-design.webp", "3D CAD design drawing of wooden crate components",
+         "Engineering Design", "Every project starts with engineering — our team designs crate systems in 3D CAD from your drawings and specifications."),
+        ("about-material-selection.webp", "Worker measuring a stack of plywood sheets",
+         "Material Selection", "Certified timber and ISPM-15 compliant materials, selected and inspected for strength and export readiness."),
+        ("about-precision-processing.webp", "CNC machine control panel in the factory",
+         "Precision Processing", "CNC machining, precision cutting and drilling — every component produced to exact tolerances."),
+        ("about-kit-assembly.webp", "Crate kit assembly with metal rails and fasteners",
+         "Kit Assembly", "Panels, frames, metal fittings and fasteners are matched and pre-assembled into complete knockdown kits."),
+        ("about-quality-inspection.webp", "Three workers inspecting metal tooling and fixtures",
+         "Quality Inspection", "Strict quality inspection at every stage — dimensional checks, structural verification and export compliance."),
+        ("about-packaging-logistics.webp", "Wooden crate with metal plates and protective packaging materials",
+         "Packaging &amp; Logistics", "Export-ready packing with protective materials, moisture barriers and complete shipping documentation."),
+        ("about-delivery-support.webp", "Forklift loading a finished wooden crate onto a truck",
+         "Delivery &amp; Support", "Container loading and global delivery, with responsive support from order to arrival."),
+    ]
+    step_html = ""
+    for i, (fn, alt, t, d) in enumerate(steps):
+        img = f'<div class="ph"><img src="{rel}assets/img/{fn}" alt="{alt}" loading="lazy"></div>'
+        txt = (f'<div><span class="kicker">Step {i+1:02d}</span><h3>{t}</h3>'
+               f'<p style="margin-top:10px">{d}</p></div>')
+        inner = img + txt if i % 2 == 0 else txt + img
+        step_html += f'\n  <div class="split reveal" style="margin-bottom:48px">{inner}</div>'
     body = f"""
 <div class="page-hero"><div class="wrap">
   <div class="breadcrumb"><a href="{rel}">Home</a> / About Us</div>
@@ -391,6 +464,12 @@ def build_about():
     <p style="margin-top:16px">From engineering review to final shipment, every stage is managed with precision and consistency.</p>
   </div>
 </div></section>
+
+<section class="band"><div class="wrap">
+  <h2 class="section-title reveal">From Drawing to Delivery</h2>
+  <p class="section-sub reveal">Seven controlled stages take every OEM packaging program from engineering review to final shipment.</p>
+{step_html}
+</div></section>
 """ + cta_band(rel, "Work With an OEM Packaging Partner",
                "Tell us what you're shipping — we'll engineer the right crate for it.")
     return page(rel, "about", "About Us | Qingdao Lumber & Packaging — 20+ Years OEM Expertise",
@@ -402,30 +481,44 @@ def build_case_studies():
     cases = [
         ("High-value IT &amp; data center equipment",
          "Shock-resistant internal support system designed to stabilize sensitive server components during global transit.",
-         "100% custom-built to customer drawings, ensuring safe handling, vibration protection, and reliable international delivery."),
+         "100% custom-built to customer drawings, ensuring safe handling, vibration protection, and reliable international delivery.",
+         "case-data-server.webp", "Tall wooden server crate with CAUTION markings for data center equipment"),
         ("High-voltage utility equipment",
          "Reinforced timber-frame crate structure designed for stacking strength and impact resistance in bulk export shipping.",
-         "Lower cost alternative to traditional packaging while improving durability, space efficiency, and logistics performance."),
+         "Lower cost alternative to traditional packaging while improving durability, space efficiency, and logistics performance.",
+         "case-glass-insulator.webp", "Wooden crates packed with stacked glass high-voltage insulators"),
         ("Heavy IT infrastructure transport",
          "Reinforced steel bracket system with CNC-cut precision panels for maximum load stability and secure assembly.",
-         "Flat-pack KD structure reduces shipping costs while enabling fast on-site assembly and reuse capability."),
+         "Flat-pack KD structure reduces shipping costs while enabling fast on-site assembly and reuse capability.",
+         "case-server-rack-kd.webp", "Flat-pack server rack kit with yellow steel support brackets"),
         ("Additive manufacturing &amp; industrial machinery",
          "Rigid frame structure with pallet integration designed for vibration control and long-distance transport safety.",
-         "Ensures climate stability, structural protection, and consistent global delivery performance."),
+         "Ensures climate stability, structural protection, and consistent global delivery performance.",
+         "case-industrial-printer.webp", "Custom wooden crate for an industrial printer"),
         ("Energy infrastructure equipment",
          "Custom-fit internal reinforcement system designed to eliminate movement and absorb transport shocks.",
-         "Ensures installation-ready delivery with full protection across global shipping routes."),
+         "Ensures installation-ready delivery with full protection across global shipping routes.",
+         "case-ev-charging.webp", "Wooden crate housing an EV charging station"),
         ("High-volume relocation logistics",
          "ISPM-15 compliant reinforced KD structure designed for maximum container efficiency and repeat usage.",
-         "Flat-pack system reduces freight cost while improving stacking strength and operational efficiency."),
+         "Flat-pack system reduces freight cost while improving stacking strength and operational efficiency.",
+         None, None),
     ]
-    cards = "\n".join(f"""
-    <div class="tcard reveal">
+    def case_card(app, focus, value, img, alt):
+        inner = f"""
       <span class="kicker">Application</span>
       <h3>{app}</h3>
       <p style="margin-top:10px"><strong>Engineering Focus:</strong> {focus}</p>
-      <p style="margin-top:8px;color:var(--muted)"><strong>Key Value:</strong> {value}</p>
-    </div>""" for app, focus, value in cases)
+      <p style="margin-top:8px;color:var(--muted)"><strong>Key Value:</strong> {value}</p>"""
+        if img:
+            return f"""
+    <div class="card reveal"><div class="ph portrait"><img src="{rel}assets/img/{img}" alt="{alt}" loading="lazy"></div>
+      <div class="bd">{inner}
+      </div></div>"""
+        return f"""
+    <div class="tcard reveal">{inner}
+    </div>"""
+    cards = "\n".join(case_card(*c) for c in cases)
     body = f"""
 <div class="page-hero"><div class="wrap">
   <div class="breadcrumb"><a href="{rel}">Home</a> / Case Study</div>
