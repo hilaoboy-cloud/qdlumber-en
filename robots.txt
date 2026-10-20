@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://en.qdlumber.com/sitemap.xml
