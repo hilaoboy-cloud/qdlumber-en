@@ -144,12 +144,12 @@ section{padding:72px 0}
 /* ---------- footer ---------- */
 .site-footer{background:#0d1712;color:#b9c6bf;padding:64px 0 0;font-size:.95rem}
 .footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr 1.2fr;gap:36px;padding-bottom:44px}
-.site-footer h4{color:#fff;font-size:1.02rem;margin-bottom:16px}
+.site-footer h4{color:#fff;font-size:.82rem;font-weight:700;text-transform:uppercase;letter-spacing:.14em;margin-bottom:18px}
 .site-footer ul{list-style:none}
 .site-footer ul li{margin-bottom:10px}
-.site-footer a{color:#b9c6bf}
+.site-footer a{color:#8fa79b;transition:color .2s}
 .site-footer a:hover{color:#fff}
-.footer-brand img{height:40px;margin-bottom:16px;filter:brightness(0) invert(1);opacity:.95}
+.footer-brand img{height:44px;width:auto;margin-bottom:18px;display:block}
 .social-row{display:flex;gap:12px;margin-top:18px}
 .social-row a{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:14px}
 .social-row a:hover{background:var(--g500)}

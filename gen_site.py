@@ -62,7 +62,9 @@ def head(rel, slug, title, desc, extra=""):
 <meta property="og:description" content="{desc}">
 <meta property="og:url" content="{canon}">
 <meta property="og:image" content="{CANON}/assets/img/logo.webp">
-<link rel="icon" type="image/webp" href="{rel}assets/img/logo.webp">
+<link rel="icon" type="image/webp" href="{rel}assets/img/favicon.webp">
+<link rel="icon" type="image/png" href="{rel}assets/img/favicon.png">
+<link rel="apple-touch-icon" href="{rel}assets/img/favicon.png">
 <link rel="stylesheet" href="{rel}assets/css/style.css">
 <script type="application/ld+json">{json.dumps(ORG_JSONLD, ensure_ascii=False)}</script>
 {extra}</head>"""
@@ -96,7 +98,7 @@ def footer(rel):
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <img src="{rel}assets/img/logo.webp" alt="Qingdao Lumber &amp; Packaging" width="200" height="76">
+      <img src="{rel}assets/img/logo-footer.webp" alt="Qingdao Lumber &amp; Packaging" width="220" height="83">
       <p>U.S.-owned OEM manufacturer of custom wooden crates, knock-down crate kits and export packaging systems — serving global industrial programs for 20+ years.</p>
       <div class="social-row">
         <a href="https://www.linkedin.com/company/qdlumber/" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
@@ -105,7 +107,7 @@ def footer(rel):
       </div>
     </div>
     <div>
-      <h4>Explore</h4>
+      <h4>EXPLORE</h4>
       <ul>
         <li><a href="{rel}">Home</a></li>
         <li><a href="{rel}solutions/">Solutions</a></li>
@@ -116,22 +118,24 @@ def footer(rel):
       </ul>
     </div>
     <div>
-      <h4>Industries</h4>
+      <h4>INDUSTRIES</h4>
       <ul>{ind_links}</ul>
     </div>
     <div>
-      <h4>Contact</h4>
+      <h4>CONTACT</h4>
       <p><strong style="color:#fff">Factory</strong><br>{FACTORY[0]}<br>
       Tel: <a href="tel:+8618602619997">{FACTORY[1]}</a><br>
       Email: <a href="mailto:{FACTORY[2]}">{FACTORY[2]}</a></p>
       <p style="margin-top:12px"><strong style="color:#fff">Office</strong><br>{OFFICE[0]}<br>
       Tel: <a href="tel:+8613405101358">{OFFICE[1]}</a><br>
       Email: <a href="mailto:{OFFICE[2]}">{OFFICE[2]}</a></p>
-      <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)">
-        <span style="display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px">Our Network</span>
-        <a href="http://www.marinelumberco.com" target="_blank" rel="noopener" style="display:block;font-size:13px;color:#8fa79b;margin-bottom:4px">Marine Lumber Co. ↗</a>
-        <a href="https://marinedefensepackaging.com" target="_blank" rel="noopener" style="display:block;font-size:13px;color:#8fa79b;margin-bottom:4px">Marine Defense Packaging ↗</a>
-        <a href="http://www.qdlumber.com" target="_blank" rel="noopener" style="display:block;font-size:13px;color:#8fa79b">Qingdao Lumber &amp; Packaging (China) ↗</a>
+      <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)">
+        <h4>OUR NETWORK</h4>
+        <ul style="margin-top:10px">
+          <li><a href="http://www.marinelumberco.com" target="_blank" rel="noopener">Marine Lumber Co. ↗</a></li>
+          <li><a href="https://marinedefensepackaging.com" target="_blank" rel="noopener">Marine Defense Packaging ↗</a></li>
+          <li><a href="http://www.qdlumber.com" target="_blank" rel="noopener">Qingdao Lumber &amp; Packaging (China) ↗</a></li>
+        </ul>
       </div>
     </div>
   </div>
