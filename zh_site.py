@@ -34,6 +34,13 @@ INDUSTRIES_EN = [
     ("high-voltage-insulators-power-transmission", "High Voltage Insulator & Power Transmission"),
 ]
 
+WA_FILE = os.path.join(OUT, "assets", "whatsapp-float-button.html")
+if os.path.exists(WA_FILE):
+    with open(WA_FILE, encoding="utf-8") as f:
+        WA_CODE = f.read()
+else:
+    WA_CODE = ""
+
 ORG_JSONLD_ZH = {
     "@context": "https://schema.org",
     "@type": "Organization",
@@ -170,7 +177,11 @@ def footer_zh(rel):
     <span>© <span id="yr">2026</span> 青岛拉博尔包装设备有限公司 / 青岛远洋木业 版权所有</span>
     <span>符合国际 ISPM-15 出口热处理检疫标准 · 具备 IPPC 资质认证加施资质</span>
   </div>
-</footer>"""
+</footer>
+{WA_CODE}
+<script src="{rel}assets/js/main.js"></script>
+</body>
+</html>"""
 
 def page_zh(rel, slug, title, desc, body, extra_head=""):
     return head_zh(rel, slug, title, desc, extra_head) + header_zh(rel, slug) + body + footer_zh(rel)

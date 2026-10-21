@@ -18,8 +18,9 @@
     var links = document.querySelectorAll("#mainNav a.nav-link[data-nav]");
     links.forEach(function(a){
       var key = a.getAttribute("data-nav");
-      if ((key === "home" && (path === "/" || path === "/index.html")) ||
-          (key !== "home" && path.indexOf("/" + key) === 0)) {
+      var isHome = (key === "home") && (path === "/" || path === "" || path.endsWith("/index.html") || path.endsWith("/qdlumber-en") || path.endsWith("/zh"));
+      var isSub = (key !== "home") && (path.indexOf("/" + key) !== -1);
+      if (isHome || isSub) {
         a.classList.add("active");
       }
     });
