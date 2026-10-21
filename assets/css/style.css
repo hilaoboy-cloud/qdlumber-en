@@ -53,9 +53,16 @@ section{padding:72px 0}
 .burger span{display:block;width:26px;height:2.5px;background:var(--ink);margin:5px 0;border-radius:2px}
 
 /* ---------- hero ---------- */
-.hero{background:linear-gradient(135deg,var(--g950) 0%,var(--g800) 60%,var(--g700) 100%);color:#eef4f0;padding:96px 0 88px;position:relative;overflow:hidden}
-.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(600px 300px at 80% 20%,rgba(0,166,81,.25),transparent 60%),radial-gradient(500px 260px at 15% 85%,rgba(255,255,255,.06),transparent 60%)}
-.hero .wrap{position:relative}
+.hero{background:#0b2b1c;color:#eef4f0;padding:100px 0 92px;position:relative;overflow:hidden}
+.hero-video-bg{position:absolute;inset:0;width:100%;height:100%;overflow:hidden;z-index:1;pointer-events:none}
+.hero-video-bg iframe{position:absolute;top:50%;left:50%;width:100vw;height:56.25vw;min-height:100vh;min-width:177.78vh;transform:translate(-50%,-50%);opacity:.32;filter:contrast(1.15) brightness(.92)}
+.hero-overlay{position:absolute;inset:0;z-index:2;background:linear-gradient(135deg,rgba(11,43,28,.88) 0%,rgba(14,58,36,.76) 50%,rgba(1,92,49,.86) 100%);animation:heroMesh 14s ease-in-out infinite alternate}
+@keyframes heroMesh{
+  0%{background:linear-gradient(135deg,rgba(11,43,28,.90) 0%,rgba(14,58,36,.75) 50%,rgba(1,92,49,.85) 100%)}
+  50%{background:linear-gradient(145deg,rgba(11,43,28,.85) 0%,rgba(2,154,84,.42) 50%,rgba(1,92,49,.88) 100%)}
+  100%{background:linear-gradient(125deg,rgba(14,58,36,.92) 0%,rgba(11,43,28,.80) 50%,rgba(0,175,93,.38) 100%)}
+}
+.hero .wrap{position:relative;z-index:3}
 .hero h1{color:#fff;font-size:2.7rem;max-width:820px;margin-bottom:18px}
 .hero .lead{color:#cfddd6;font-size:1.15rem;max-width:720px;margin-bottom:34px}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap}
@@ -64,7 +71,11 @@ section{padding:72px 0}
 .btn-green:hover{background:#00913f;color:#fff;transform:translateY(-1px);box-shadow:0 8px 20px rgba(0,166,81,.35)}
 .btn-ghost{background:rgba(255,255,255,.10);color:#fff;border:1px solid rgba(255,255,255,.35);backdrop-filter:blur(8px)}
 .btn-ghost:hover{background:rgba(255,255,255,.18);color:#fff}
-.hero-inner{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:48px;box-shadow:0 20px 60px rgba(0,0,0,.25)}
+.hero-inner{background:rgba(14,58,36,.48);border:1px solid rgba(255,255,255,.16);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);border-radius:20px;padding:48px;box-shadow:0 20px 60px rgba(0,0,0,.28)}
+
+/* Video Showcase Section */
+.video-showcase{position:relative;max-width:920px;margin:32px auto 0;border-radius:18px;overflow:hidden;box-shadow:0 16px 48px rgba(11,43,28,.16);aspect-ratio:16/9;background:#000}
+.video-showcase iframe{width:100%;height:100%;border:none;display:block}
 
 /* ---------- cards & grids ---------- */
 .grid{display:grid;gap:26px}

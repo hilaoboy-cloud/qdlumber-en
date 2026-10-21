@@ -201,17 +201,23 @@ def build_home():
       <div class="bd"><h3>{t}</h3><p>{d}</p></div></div>'''
         for fn, alt, t, d in values)
     body = f"""
-<section class="hero"><div class="wrap">
-  <div class="hero-inner reveal in">
-    <span class="kicker" style="color:#7bd88f">Your Reliable OEM Packaging Solutions Partner</span>
-    <h1>Engineered OEM Packaging Systems for Global Supply Chains</h1>
-    <p class="lead">High-performance wood packaging solutions designed for precision, cost efficiency, and reliable export — supporting industrial equipment and OEM programs worldwide.<br><span style="display:inline-block;margin-top:10px;font-size:0.95em;color:#c0dfcc">Built for OEM packaging programs requiring scalability, consistency, and cost control.</span></p>
-    <div class="hero-actions">
-      <a class="btn btn-green" href="{rel}case-studies/#rfq">Request a Quote</a>
-      <a class="btn btn-ghost" href="{rel}solutions/">Explore Solutions</a>
+<section class="hero">
+  <div class="hero-video-bg">
+    <iframe src="https://player.vimeo.com/video/1190319624?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+  </div>
+  <div class="hero-overlay"></div>
+  <div class="wrap">
+    <div class="hero-inner reveal in">
+      <span class="kicker" style="color:#7bd88f">Your Reliable OEM Packaging Solutions Partner</span>
+      <h1>Engineered OEM Packaging Systems for Global Supply Chains</h1>
+      <p class="lead">High-performance wood packaging solutions designed for precision, cost efficiency, and reliable export — supporting industrial equipment and OEM programs worldwide.<br><span style="display:inline-block;margin-top:10px;font-size:0.95em;color:#c0dfcc">Built for OEM packaging programs requiring scalability, consistency, and cost control.</span></p>
+      <div class="hero-actions">
+        <a class="btn btn-green" href="{rel}case-studies/#rfq">Request a Quote</a>
+        <a class="btn btn-ghost" href="{rel}solutions/">Explore Solutions</a>
+      </div>
     </div>
   </div>
-</div></section>
+</section>
 
 <section style="padding:44px 0 0"><div class="wrap">
   <div class="grid g3">
@@ -245,6 +251,14 @@ def build_home():
     <div class="tcard reveal"><h3>We Operate as an Extension of Your Team</h3><p>With transparent communication, responsive support, and disciplined execution, we align with your operations to support long-term OEM success.</p></div>
     <div class="tcard reveal"><h3>Optimized Designs for Cost-Efficient Logistics</h3><p>Engineered to reduce transportation costs, shorten lead times, and minimize material waste through efficient structural design and packaging optimization.</p></div>
     <div class="tcard reveal"><h3>Full Traceability from Raw Material to Final Delivery</h3><p>Every stage is tracked and controlled — ensuring transparency, accountability, and consistent quality across the entire production process.</p></div>
+  </div>
+</div></section>
+
+<section><div class="wrap" style="text-align:center">
+  <h2 class="section-title reveal">Reliable Packaging Systems for Global Logistics</h2>
+  <p class="section-sub reveal">Engineered to protect, perform, and scale across demanding international supply chains. Watch our automated manufacturing, precision processing, and rigorous quality inspection in action.</p>
+  <div class="video-showcase reveal">
+    <iframe src="https://www.youtube.com/embed/5F0zRgISQto?rel=0" title="Qingdao Lumber &amp; Packaging OEM Service" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
   </div>
 </div></section>
 
