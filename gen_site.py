@@ -77,9 +77,10 @@ def head(rel, slug, title, desc, extra=""):
 <script type="application/ld+json">{json.dumps(ORG_JSONLD, ensure_ascii=False)}</script>
 {extra}</head>"""
 
-def header(rel):
+def header(rel, slug=""):
     ind_links = "\n".join(
         f'<a href="{rel}industries/{s}/">{n}</a>' for s, n, _ in INDUSTRIES)
+    zh_target = f"{rel}zh/{slug + '/' if slug else ''}"
     return f"""<body>
 <header class="site-header">
   <div class="wrap header-inner">
@@ -95,6 +96,11 @@ def header(rel):
       <span class="has-drop"><a class="nav-link" data-nav="industries" href="{rel}industries/data-servers-precision-electronics/">Industries ▾</a>
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}case-studies/#rfq">Get a Quote</a>
+      <div class="lang-switch">
+        <a class="active" href="#">EN</a>
+        <span class="sep">/</span>
+        <a href="{zh_target}">中文</a>
+      </div>
     </nav>
   </div>
 </header>"""
@@ -164,7 +170,7 @@ def footer(rel):
 </html>"""
 
 def page(rel, slug, title, desc, body, extra_head=""):
-    return head(rel, slug, title, desc, extra_head) + header(rel) + body + footer(rel)
+    return head(rel, slug, title, desc, extra_head) + header(rel, slug) + body + footer(rel)
 
 def write(path, content):
     full = os.path.join(OUT, path)
@@ -912,10 +918,13 @@ def build_industries():
 def build_seo():
     urls = ["", "solutions/", "capabilities/", "about/", "case-studies/"] + \
            ["industries/" + s + "/" for s, _, _ in INDUSTRIES]
+    zh_urls = ["zh/", "zh/solutions/", "zh/capabilities/", "zh/about/", "zh/case-studies/"] + \
+              ["zh/industries/" + s + "/" for s, _, _ in INDUSTRIES]
+    all_urls = urls + zh_urls
     sm = ['<?xml version="1.0" encoding="UTF-8"?>',
           '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
-    for u in urls:
-        sm.append(f"  <url><loc>{CANON}/{u}</loc><changefreq>monthly</changefreq><priority>{'1.0' if u == '' else '0.8'}</priority></url>")
+    for u in all_urls:
+        sm.append(f"  <url><loc>{CANON}/{u}</loc><changefreq>monthly</changefreq><priority>{'1.0' if u in ('', 'zh/') else '0.8'}</priority></url>")
     sm.append("</urlset>")
     write("sitemap.xml", "\n".join(sm) + "\n")
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {CANON}/sitemap.xml\n")
@@ -952,6 +961,7 @@ def build_redirects():
 
 # ================= MAIN =================
 def main():
+    print("--- Building English Site ---")
     write("index.html", build_home())
     write("solutions/index.html", build_solutions())
     write("capabilities/index.html", build_capabilities())
@@ -960,8 +970,15 @@ def main():
     for slug, html in build_industries().items():
         write(f"industries/{slug}/index.html", html)
     build_redirects()
+
+    # Generate Chinese Site
+    try:
+        import zh_site
+        zh_site.generate_chinese_site()
+    except Exception as e:
+        print("Error generating Chinese site:", e)
+
     build_seo()
-    # copy images already in assets/img (populated by image pipeline)
     print("done.")
 
 if __name__ == "__main__":

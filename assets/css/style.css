@@ -51,6 +51,11 @@ section{padding:72px 0}
 .drop a:hover{background:var(--g50);color:var(--g700)}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .burger span{display:block;width:26px;height:2.5px;background:var(--ink);margin:5px 0;border-radius:2px}
+.lang-switch{display:inline-flex;align-items:center;background:var(--soft);border:1px solid var(--line);border-radius:999px;padding:3px 12px;font-size:13.5px;font-weight:700;gap:6px;margin-left:6px;vertical-align:middle}
+.lang-switch a{color:var(--muted);text-decoration:none;transition:color .2s}
+.lang-switch a:hover{color:var(--g600)}
+.lang-switch a.active{color:var(--g700);cursor:default;font-weight:800}
+.lang-switch .sep{color:var(--line);font-weight:400}
 
 /* ---------- hero ---------- */
 .hero{background:#071c12 url('../img/hero-poster.webp') center center / cover no-repeat;color:#eef4f0;min-height:calc(100vh - 72px);max-height:840px;display:flex;align-items:center;padding:80px 0;position:relative;overflow:hidden}
@@ -213,6 +218,7 @@ section{padding:72px 0}
   .main-nav{position:fixed;top:72px;right:0;left:0;background:#fff;flex-direction:column;align-items:stretch;padding:12px 24px 24px;gap:4px;border-bottom:1px solid var(--line);display:none;box-shadow:var(--shadow)}
   .main-nav.open{display:flex}
   .main-nav a.nav-link{padding:12px 4px;border-bottom:1px solid var(--line)}
+  .main-nav .lang-switch{align-self:flex-start;margin:12px 4px 6px;padding:6px 16px}
   .drop{position:static;display:block;box-shadow:none;border:none;padding:0 0 0 12px}
   .burger{display:block}
   .g5,.g4,.g3,.g2{grid-template-columns:1fr}
