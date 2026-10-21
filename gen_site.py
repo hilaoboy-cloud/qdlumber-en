@@ -358,8 +358,10 @@ def build_solutions():
       <p><em>Engineered OEM flat-pack packaging systems combining precision wood panels and structural metal components for efficient on-site assembly at destination.</em></p>
       <ul class="check-list">
         <li>Each kit includes pre-cut panels, reinforced frames, metal fittings, braces, and assembly hardware, ensuring fast installation and consistent structural performance across deployment.</li>
-        <li>Optimized for container utilization — these systems reduce shipping volume and logistics costs while maintaining full structural strength and protection performance after assembly.</li>
+        <li>Optimized for container utilization — these systems reduce shipping volume by up to 60% while maintaining full structural strength and protection performance after assembly.</li>
+        <li>Standardized numbering and interlocking hardware allow rapid assembly by overseas operators with standard hand tools.</li>
       </ul>
+      <div class="split-meta"><span>Packaging Format:</span> Flat-Pack Knockdown (KD) · Space-Saving Modular Assembly</div>
     </div>
   </div>
 
@@ -373,6 +375,7 @@ def build_solutions():
         <li>Designed for seamless integration with wooden crate structures, reinforcing key stress points during handling, stacking, and long-distance transportation.</li>
         <li>Built for demanding industrial and export environments: durable performance under vibration, dynamic loads, and multi-modal logistics conditions.</li>
       </ul>
+      <div class="split-meta"><span>Metal Fabrication:</span> High-Strength Laser-Cut &amp; Robotic-Welded Structural Steel</div>
     </div>
     <div class="ph"><img src="{rel}assets/img/solutions-metal-components.webp" alt="Yellow lifting frame moving wooden crate components in the factory" loading="lazy" width="800" height="450"></div>
   </div>
@@ -382,11 +385,13 @@ def build_solutions():
     <div class="split-content">
       <span class="kicker">Hardware &amp; Fixtures</span>
       <h3>Connection &amp; Fastening Systems</h3>
-      <p><em>Custom-engineered sheet metal reinforcement plates designed for structural strengthening in industrial crate systems.</em></p>
+      <p><em>Custom-engineered sheet metal reinforcement plates and heavy-duty hardware designed for high-stress joints.</em></p>
       <ul class="check-list">
-        <li>Manufactured in-house through precision laser cutting, bending, and welding — enhancing load distribution and structural rigidity at key connection points within wooden and hybrid crate assemblies.</li>
-        <li>Strict dimensional control ensures accurate fitment and reliable integration with crate frames, improving overall stability during lifting, stacking, and long-distance transportation.</li>
+        <li>Manufactured in-house through precision laser cutting, CNC bending, and stamping — enhancing load distribution at critical frame connection points.</li>
+        <li>Strict dimensional control ensures precise alignment with crate frames, eliminating joint play during long-distance transit.</li>
+        <li>Available with anti-corrosion hot-dip galvanizing, zinc plating, or industrial powder coating for extended outdoor and sea freight durability.</li>
       </ul>
+      <div class="split-meta"><span>Surface Treatment:</span> Anti-Corrosion Hot-Dip Galvanized &amp; Zinc-Plated Fittings</div>
     </div>
   </div>
 </div></section>
@@ -481,27 +486,89 @@ def build_about():
     rel = "../"
     steps = [
         ("about-engineering-design.webp", "3D CAD design drawing of wooden crate components",
-         "Engineering Design", "Every project starts with engineering — our team designs crate systems in 3D CAD from your drawings and specifications."),
+         "Planning & Engineering",
+         "Engineering Design & 3D Modeling",
+         "Every project begins with engineering analysis — our team translates your drawings and technical requirements into high-precision 3D CAD crate models.",
+         [
+             "Full 3D CAD parametric modeling and digital assembly validation",
+             "Finite element load, compression, and vibration analysis",
+             "Container space and cube utilization optimization",
+         ],
+         "Deliverable: Approved 3D CAD Drawings & Packaging Specification"),
         ("about-material-selection.webp", "Worker measuring a stack of plywood sheets",
-         "Material Selection", "Certified timber and ISPM-15 compliant materials, selected and inspected for strength and export readiness."),
+         "Materials & Compliance",
+         "Material Selection & ISPM-15 Treatment",
+         "Certified timber, structural plywood, and heavy-duty steel hardware selected and inspected to guarantee international export readiness.",
+         [
+             "100% ISPM-15 certified heat-treated solid lumber with official IPPC stamps",
+             "High-strength moisture-resistant industrial structural plywood",
+             "Traceable sustainable timber sourcing with complete customs documentation",
+         ],
+         "Standard: 100% ISPM-15 Phytosanitary Heat-Treated & Certified"),
         ("about-precision-processing.webp", "CNC machine control panel in the factory",
-         "Precision Processing", "CNC machining, precision cutting and drilling — every component produced to exact tolerances."),
+         "Automated Manufacturing",
+         "Precision CNC Machining & Processing",
+         "Automated multi-axis CNC routers, precision panel saws, and automated drilling equipment produce components to tight industrial tolerances.",
+         [
+             "Tight ±1.0mm tolerance control across cutting, slotting, and drilling",
+             "Automated repetitive machining ensuring identical batch-to-batch consistency",
+             "Custom dado grooves, interlocking notches, and pre-drilled fastening holes",
+         ],
+         "Tolerance: ±1.0mm Multi-Axis CNC Machining Precision"),
         ("about-kit-assembly.webp", "Crate kit assembly with metal rails and fasteners",
-         "Kit Assembly", "Panels, frames, metal fittings and fasteners are matched and pre-assembled into complete knockdown kits."),
+         "Modular Systems",
+         "Knockdown (KD) Kit Pre-Assembly",
+         "Panels, structural frames, laser-cut metal brackets, and fasteners are matched and bundled into complete flat-pack knockdown kits.",
+         [
+             "Flat-pack knockdown architecture for up to 60% freight volume reduction",
+             "Pre-installed metal connection plates and labeled alignment pins",
+             "Clear assembly instructions and marked component sequences for destination setup",
+         ],
+         "Format: Flat-Pack Knockdown (KD) Kit System · Rapid Setup"),
         ("about-quality-inspection.webp", "Three workers inspecting metal tooling and fixtures",
-         "Quality Inspection", "Strict quality inspection at every stage — dimensional checks, structural verification and export compliance."),
+         "Quality Assurance",
+         "In-Process & Final Quality Inspection",
+         "Disciplined multi-stage quality control verifying dimensional accuracy, structural strength, hardware fitment, and export compliance.",
+         [
+             "Multi-point dimensional, squareness, and diagonal tolerance verification",
+             "Drop resistance, compression, and simulated forklift handling checks",
+             "100% audit of heat-treatment IPPC markings and compliance certificates",
+         ],
+         "Quality: In-Process Multi-Point QC & Structural Load Verification"),
         ("about-packaging-logistics.webp", "Wooden crate with metal plates and protective packaging materials",
-         "Packaging &amp; Logistics", "Export-ready packing with protective materials, moisture barriers and complete shipping documentation."),
+         "Barrier Engineering",
+         "Protective Packaging & Barrier Integration",
+         "Export-ready internal protection engineered to shield sensitive machinery from corrosion, moisture, abrasion, and transport shocks.",
+         [
+             "Heat-sealed aluminum foil & VCI anti-corrosion barrier bags with desiccants",
+             "High-density CNC-milled PE / EPE foam cushioning and shock-damping mounts",
+             "External TIP-N-TELL and DROP-N-TELL impact and tilt monitoring indicators",
+         ],
+         "Protection: VCI Anti-Corrosion Barrier & Multi-Axis Shock Damping"),
         ("about-delivery-support.webp", "Forklift loading a finished wooden crate onto a truck",
-         "Delivery &amp; Support", "Container loading and global delivery, with responsive support from order to arrival."),
+         "Global Fulfillment",
+         "Global Logistics & Container Loading Support",
+         "Direct container loading at our Qingdao facility with engineered dunnage and bracing for safe ocean transit and on-time global arrival.",
+         [
+             "Engineered container stowing plans maximizing space and preventing cargo shift",
+             "Direct trucking to Qingdao Port (major international shipping hub)",
+             "Responsive technical support and on-site assembly guidance for overseas teams",
+         ],
+         "Logistics: Direct Qingdao Port Loading & Worldwide Ocean Freight"),
     ]
     step_html = ""
-    for i, (fn, alt, t, d) in enumerate(steps):
+    for i, (fn, alt, cat, t, d, bullets, meta) in enumerate(steps):
         img = f'<div class="ph"><img src="{rel}assets/img/{fn}" alt="{alt}" loading="lazy"></div>'
-        txt = (f'<div class="split-content"><span class="kicker">Step {i+1:02d}</span><h3>{t}</h3>'
-               f'<p style="margin-top:12px;color:var(--muted);font-size:1.02rem;line-height:1.6">{d}</p></div>')
+        bullet_items = "".join(f"<li>{b}</li>" for b in bullets)
+        txt = f"""<div class="split-content">
+      <span class="kicker">Stage {i+1:02d} · {cat}</span>
+      <h3>{t}</h3>
+      <p style="margin-top:10px;color:var(--muted);font-size:1.01rem;line-height:1.6">{d}</p>
+      <ul class="check-list" style="margin-top:14px">{bullet_items}</ul>
+      <div class="split-meta"><span>{meta.split(':')[0]}:</span> {meta.split(':', 1)[1].strip()}</div>
+    </div>"""
         inner = img + txt if i % 2 == 0 else txt + img
-        step_html += f'\n  <div class="split reveal" style="margin-bottom:32px">{inner}</div>'
+        step_html += f'\n  <div class="split reveal" style="margin-bottom:36px">{inner}</div>'
     body = f"""
 <div class="page-hero"><div class="wrap">
   <div class="breadcrumb"><a href="{rel}">Home</a> / About Us</div>
@@ -535,25 +602,45 @@ def build_about():
 </div></section>
 
 <section style="padding:0 0 64px"><div class="wrap">
-  <div class="split" style="gap:36px;align-items:start">
-    <div class="reveal">
-      <div class="ph" style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)">
-        <img src="{rel}assets/img/about-factory-aerial.webp" alt="Aerial birds-eye view of Qingdao Lumber &amp; Packaging manufacturing facility in Jimo, Qingdao" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+  <div class="grid g2" style="gap:32px">
+    <div class="facility-card reveal">
+      <div class="ph">
+        <img src="{rel}assets/img/about-factory-aerial.webp" alt="Aerial birds-eye view of Qingdao Lumber &amp; Packaging manufacturing facility in Jimo, Qingdao" loading="lazy">
       </div>
-      <div style="margin-top:16px">
-        <span class="kicker" style="color:var(--g600);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Manufacturing Facility</span>
-        <h3 style="font-size:1.24rem;margin:6px 0 8px;color:var(--g700)">Jimo Production Base · Qingdao</h3>
-        <p style="color:var(--muted);font-size:0.96rem;line-height:1.6">Full-scale manufacturing facility with 100,000+ SQM operational capacity, integrated CNC automated wood processing, structural steel fabrication, and certified ISPM-15 heat treatment facilities.</p>
+      <div class="bd">
+        <span class="kicker">MANUFACTURING BASE</span>
+        <h3>Jimo Production Base · Qingdao</h3>
+        <p>Full-scale manufacturing facility with 100,000+ SQM operational capacity, integrated CNC automated wood processing, structural steel fabrication, and certified ISPM-15 heat treatment facilities.</p>
+        <ul class="check-list" style="margin-top:14px">
+          <li>100,000+ SQM operational facility and storage footprint</li>
+          <li>Automated CNC precision cutting, routing, and drilling lines</li>
+          <li>Multiple certified ISPM-15 thermal kilns for rapid export turnaround</li>
+        </ul>
+        <div class="tag-row">
+          <span>100,000+ SQM Capacity</span>
+          <span>CNC Automated</span>
+          <span>ISPM-15 Certified Kilns</span>
+        </div>
       </div>
     </div>
-    <div class="reveal">
-      <div class="ph" style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)">
-        <img src="{rel}assets/img/about-team-group.webp" alt="Qingdao Lumber &amp; Packaging management, engineering, and manufacturing team group photo" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+    <div class="facility-card reveal">
+      <div class="ph">
+        <img src="{rel}assets/img/about-team-group.webp" alt="Qingdao Lumber &amp; Packaging management, engineering, and manufacturing team group photo" loading="lazy">
       </div>
-      <div style="margin-top:16px">
-        <span class="kicker" style="color:var(--g600);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Our OEM Team</span>
-        <h3 style="font-size:1.24rem;margin:6px 0 8px;color:var(--g700)">Dedicated Engineering &amp; Operations</h3>
-        <p style="color:var(--muted);font-size:0.96rem;line-height:1.6">Experienced packaging engineers, CNC specialists, quality inspectors, and logistics professionals committed to repeatable precision, export compliance, and on-time global fulfillment.</p>
+      <div class="bd">
+        <span class="kicker">PROFESSIONAL OEM TEAM</span>
+        <h3>Dedicated Engineering &amp; Operations</h3>
+        <p>Experienced packaging engineers, CNC specialists, quality inspectors, and logistics professionals committed to repeatable precision, export compliance, and on-time global fulfillment.</p>
+        <ul class="check-list" style="margin-top:14px">
+          <li>20+ packaging engineers and structural CAD design specialists</li>
+          <li>Disciplined in-process QA/QC inspection across all production stages</li>
+          <li>Multilingual project management serving global OEM programs</li>
+        </ul>
+        <div class="tag-row">
+          <span>20+ Years OEM Experience</span>
+          <span>Strict In-Process QA</span>
+          <span>Global Project Support</span>
+        </div>
       </div>
     </div>
   </div>
@@ -562,6 +649,8 @@ def build_about():
 <section class="band"><div class="wrap">
   <h2 class="section-title reveal">From Drawing to Delivery</h2>
   <p class="section-sub reveal">Seven controlled stages take every OEM packaging program from engineering review to final shipment.</p>
+{step_html}
+</div></section>
 {step_html}
 </div></section>
 """ + cta_band(rel, "Work With an OEM Packaging Partner",
@@ -682,6 +771,7 @@ def industry_page(slug, short, h1, title, desc, intro_paras, approach, solutions
       <span class="kicker">Industry Overview</span>
       <h3 style="margin-bottom:14px">{short}</h3>
       {paras}
+      <div class="split-meta"><span>Export Standard:</span> 100% ISPM-15 Certified · Engineered Heavy-Duty Export Protection</div>
     </div>
   </div>
 </div></section>
