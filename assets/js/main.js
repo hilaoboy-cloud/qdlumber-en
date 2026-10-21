@@ -1,4 +1,4 @@
-/* Qingdao Lumber EN — interactions */
+/* Qingdao Lumber EN / ZH — interactions */
 (function(){
   "use strict";
 
@@ -19,7 +19,7 @@
     links.forEach(function(a){
       var key = a.getAttribute("data-nav");
       var isHome = (key === "home") && (path === "/" || path === "" || path.endsWith("/index.html") || path.endsWith("/qdlumber-en") || path.endsWith("/zh"));
-      var isSub = (key !== "home") && (path.indexOf("/" + key) !== -1);
+      var isSub = (key !== "home") && (path.indexOf("/" + key) !== -1 || (key === "applications" && path.indexOf("/case-studies") !== -1));
       if (isHome || isSub) {
         a.classList.add("active");
       }
@@ -59,11 +59,11 @@
   var yr = document.getElementById("yr");
   if (yr) yr.textContent = new Date().getFullYear();
 
-  /* RFQ form: formsubmit.co AJAX, mailto fallback.
-     NOTE: formsubmit requires a one-time activation email to be confirmed
-     by the mailbox owner before submissions are delivered. */
+  /* RFQ form: formsubmit.co AJAX with mailto fallback */
   var form = document.getElementById("rfqForm");
   if (form) {
+    var isZh = document.documentElement.lang === "zh" || location.pathname.indexOf("/zh") !== -1;
+
     form.addEventListener("submit", function(e){
       e.preventDefault();
       var ok = true;
@@ -79,46 +79,73 @@
         if (!valid) ok = false;
         return val;
       }
-      var firstName = check("fFirst", function(v){ return v.length >= 1; }, "Please enter your first name.");
-      var lastName  = check("fLast",  function(v){ return v.length >= 1; }, "Please enter your last name.");
-      var email     = check("fEmail", function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, "Please enter a valid email address.");
-      var company   = check("fCompany", function(v){ return v.length >= 2; }, "Please enter your company name.");
-      var country   = document.getElementById("fCountry") ? document.getElementById("fCountry").value.trim() : "";
-      var need      = check("fNeed", function(v){ return v.length >= 10; }, "Please describe your requirements (at least 10 characters).");
-      var phone     = document.getElementById("fPhone") ? document.getElementById("fPhone").value.trim() : "";
+
+      var nameMsg = isZh ? "请填写您的姓名" : "Please enter your full name.";
+      var emailMsg = isZh ? "请填写有效的企业邮箱" : "Please enter a valid business email.";
+      var companyMsg = isZh ? "请填写您的公司名称" : "Please enter your company name.";
+      var countryMsg = isZh ? "请填写所在国家或地区" : "Please enter your country / region.";
+      var needMsg = isZh ? "请填写您的产品与包装要求（至少10个字符）" : "Please describe your product and packaging requirements (at least 10 characters).";
+
+      var fullName    = check("fName", function(v){ return v.length >= 1; }, nameMsg);
+      var email       = check("fEmail", function(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }, emailMsg);
+      var company     = check("fCompany", function(v){ return v.length >= 2; }, companyMsg);
+      var country     = check("fCountry", function(v){ return v.length >= 1; }, countryMsg);
+      var dimensions  = document.getElementById("fDimensions") ? document.getElementById("fDimensions").value.trim() : "";
+      var quantity    = document.getElementById("fQuantity") ? document.getElementById("fQuantity").value.trim() : "";
+      var destination = document.getElementById("fDestination") ? document.getElementById("fDestination").value.trim() : "";
+      var need        = check("fNeed", function(v){ return v.length >= 10; }, needMsg);
+
       if (!ok) {
         var bad = form.querySelector(".field.invalid input, .field.invalid textarea");
         if (bad) bad.focus();
         return;
       }
+
       var note = document.getElementById("formNote");
       function showNote(t){ if (note){ note.classList.add("show"); note.textContent = t; } }
+
+      var successMsg = isZh
+        ? "感谢您的咨询，您的信息已提交。我们将评估您的询价，并与您沟通后续事宜。"
+        : "Thank you — your inquiry has been sent. We will review your inquiry and follow up regarding the next steps.";
+      var fallbackMsg = isZh
+        ? "自动提交遇到问题，已为您唤起本地邮件客户端。我们将评估您的询价，并与您沟通后续事宜。"
+        : "Something went wrong sending automatically — your email client has been opened instead. We will review your inquiry and follow up regarding the next steps.";
+
       function mailtoFallback(){
-        var subject = encodeURIComponent("Website RFQ — " + company + " / " + firstName + " " + lastName);
+        var subject = encodeURIComponent((isZh ? "[网站询价] " : "Website RFQ — ") + company + " / " + fullName);
         var body = encodeURIComponent(
-          "First Name: " + firstName + "\nLast Name: " + lastName +
-          "\nEmail: " + email + "\nCompany: " + company +
-          "\nCountry: " + (country || "—") + "\nPhone: " + (phone || "—") +
-          "\n\nRequirements:\n" + need +
-          "\n\n(Sent from the Qingdao Lumber & Packaging website RFQ form)"
+          (isZh ? "姓名: " : "Full Name: ") + fullName + "\n" +
+          (isZh ? "邮箱: " : "Business Email: ") + email + "\n" +
+          (isZh ? "公司: " : "Company: ") + company + "\n" +
+          (isZh ? "国家/地区: " : "Country / Region: ") + (country || "—") + "\n" +
+          (isZh ? "尺寸与重量: " : "Dimensions & Weight: ") + (dimensions || "—") + "\n" +
+          (isZh ? "预计数量: " : "Estimated Quantity: ") + (quantity || "—") + "\n" +
+          (isZh ? "出运目的地: " : "Shipping Destination: ") + (destination || "—") + "\n\n" +
+          (isZh ? "产品与包装要求:\n" : "Product & Packaging Requirements:\n") + need + "\n\n" +
+          (isZh ? "(来自青岛拉博尔包装网站询价表单)" : "(Sent from Qingdao Lumber & Packaging website RFQ form)")
         );
-        window.location.href = "mailto:Evan.chen@qdlumberco.com?subject=" + subject + "&body=" + body;
-        showNote("Something went wrong sending automatically — your email client has been opened instead. We usually reply within one business day.");
+        window.location.href = "mailto:evan.chen@qdlumberco.com?subject=" + subject + "&body=" + body;
+        showNote(fallbackMsg);
       }
+
       var btn = form.querySelector('button[type="submit"]');
-      if (btn) { btn.disabled = true; btn.textContent = "Sending…"; }
-      fetch("https://formsubmit.co/ajax/Evan.chen@qdlumberco.com", {
+      var btnDefaultText = isZh ? "提交询价" : "Submit Inquiry";
+      var btnSendingText = isZh ? "正在提交…" : "Submitting…";
+      if (btn) { btn.disabled = true; btn.textContent = btnSendingText; }
+
+      fetch("https://formsubmit.co/ajax/evan.chen@qdlumberco.com", {
         method: "POST",
         headers: { "Content-Type": "application/json", "Accept": "application/json" },
         body: JSON.stringify({
-          "First Name": firstName,
-          "Last Name": lastName,
-          email: email,
-          company: company,
-          country: country || "—",
-          phone: phone || "—",
-          requirements: need,
-          _subject: "Website RFQ — " + company + " / " + firstName + " " + lastName,
+          "Full Name": fullName,
+          "Business Email": email,
+          "Company": company,
+          "Country / Region": country || "—",
+          "Dimensions & Weight": dimensions || "—",
+          "Estimated Quantity": quantity || "—",
+          "Shipping Destination": destination || "—",
+          "Requirements": need,
+          _subject: (isZh ? "[网站询价] " : "Website RFQ — ") + company + " / " + fullName,
           _template: "table"
         })
       }).then(function(res){
@@ -126,14 +153,15 @@
         return res.json();
       }).then(function(){
         form.reset();
-        showNote("Thank you — your inquiry has been sent. We usually reply within one business day.");
+        showNote(successMsg);
       }).catch(function(){
         mailtoFallback();
       }).finally(function(){
-        if (btn) { btn.disabled = false; btn.textContent = "Send Inquiry"; }
+        if (btn) { btn.disabled = false; btn.textContent = btnDefaultText; }
       });
     });
-    ["fFirst","fLast","fEmail","fCompany","fNeed"].forEach(function(id){
+
+    ["fName","fEmail","fCompany","fCountry","fNeed"].forEach(function(id){
       var el = document.getElementById(id);
       if (el) el.addEventListener("input", function(){
         el.closest(".field").classList.remove("invalid");
