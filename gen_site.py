@@ -103,17 +103,9 @@ def header(rel, slug=""):
       <span class="has-drop"><a class="nav-link" data-nav="industries" href="{rel}industries/data-servers-precision-electronics/">Industries ▾</a>
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}applications/#rfq">Request a Quote</a>
-      <div class="lang-switch">
-        <a class="lang-btn active" href="#" aria-label="English">
-          <img src="{rel}assets/img/flag-us.svg" alt="English" width="18" height="13.5" class="flag-icon">
-          <span>EN</span>
-        </a>
-        <span class="sep">/</span>
-        <a class="lang-btn" href="{zh_target}" aria-label="中文版">
-          <img src="{rel}assets/img/flag-cn.svg" alt="中文版" width="18" height="13.5" class="flag-icon">
-          <span>中文</span>
-        </a>
-      </div>
+      <a class="lang-flag-toggle" href="{zh_target}" title="切换至中文版" aria-label="切换至中文版">
+        <img src="{rel}assets/img/flag-cn.svg" alt="中文版" width="22" height="16" class="flag-icon">
+      </a>
     </nav>
   </div>
 </header>"""
@@ -521,21 +513,42 @@ def build_capabilities():
 # ================= ABOUT US =================
 def build_about():
     rel = "../"
-    steps = [
-        ("01", "Requirement Review", "Dimensions & Load", "about-engineering-design.webp",
-         "Confirming equipment dimensions, weight, handling methods, shipment routes and destination requirements.", "Initial Review ➔"),
-        ("02", "Drawing Review", "CAD & Tolerances", "values-precision.webp",
-         "Reviewing customer drawings and technical specifications to establish manufacturing parameters.", "Technical Validation ➔"),
-        ("03", "Process Planning", "Materials & Schedule", "about-material-selection.webp",
-         "Selecting suitable timber, plywood, fasteners, protective liners and production schedules.", "Process Planning ➔"),
-        ("04", "Fabrication & Assembly", "Cutting & Framing", "about-precision-processing.webp",
-         "Precision cutting, panel processing, framing and component assembly according to verified drawings.", "Production Execution ➔"),
-        ("05", "Quality Inspection", "In-Process Verification", "about-quality-inspection.webp",
-         "Verifying dimensional accuracy, fastener placement, structural strength and IPPC mark clarity.", "Quality Verification ➔"),
-        ("06", "Packing & Preparation", "ISPM 15 & Packaging", "about-packaging-logistics.webp",
-         "Protective wrapping, labeling, export documentation coordination and container loading preparation.", "Export Preparation ➔"),
-        ("07", "Delivery Coordination", "Dispatch & Handover", "about-delivery-support.webp",
-         "Coordinating dispatch and logistics handover according to agreed project schedules.", "Project Fulfillment ✓"),
+    phase1_steps = [
+        ("01", "Requirement Review",
+         "Confirming equipment dimensions, weight, handling methods, shipment routes and destination requirements.",
+         "Scope &amp; transport conditions checklist", "➔"),
+        ("02", "Drawing &amp; Specification Review",
+         "Reviewing customer drawings and technical specifications to establish manufacturing parameters.",
+         "CAD validation &amp; joint tolerances", "➔"),
+        ("03", "Material &amp; Process Planning",
+         "Selecting suitable timber, plywood, fasteners, protective liners and production schedules.",
+         "Lumber cutting bill &amp; batch schedule", "➔"),
+    ]
+    phase2_steps = [
+        ("04", "Manufacturing &amp; Assembly",
+         "Precision cutting, panel processing, framing and component assembly according to verified drawings.",
+         "CNC sawing &amp; framing prefabrication", "➔"),
+        ("05", "Quality Inspection",
+         "Verifying dimensional accuracy, fastener placement, structural strength and IPPC mark clarity.",
+         "Dimensional checks &amp; in-process QA records", "➔"),
+    ]
+    phase3_steps = [
+        ("06", "Packing &amp; Shipment Preparation",
+         "Protective wrapping, labeling, export documentation coordination and container loading preparation.",
+         "ISPM 15 treatment &amp; container staging", "➔"),
+        ("07", "Delivery Coordination",
+         "Coordinating dispatch and logistics handover according to agreed project schedules.",
+         "Carrier handover &amp; dispatch fulfillment", "✓"),
+    ]
+
+    all_steps = [
+        ("01", "Requirement Review", "Dimensions & Load"),
+        ("02", "Drawing Review", "CAD & Tolerances"),
+        ("03", "Process Planning", "Materials & Schedule"),
+        ("04", "Fabrication", "Cutting & Assembly"),
+        ("05", "Quality QA", "In-Process Verification"),
+        ("06", "Packing Prep", "ISPM 15 & Packing"),
+        ("07", "Delivery", "Dispatch & Handover"),
     ]
 
     pipeline_steps = "\n".join(
@@ -544,24 +557,26 @@ def build_about():
       <div class="p-title">{t}</div>
       <div class="p-sub">{sub}</div>
     </div>'''
-        for n, t, sub, _, _, _ in steps)
+        for n, t, sub in all_steps)
 
-    flow_cards = "\n".join(
-        f'''    <div class="flow-card reveal">
-      <div class="flow-img">
-        <img src="{rel}assets/img/{img}" alt="{t} - Qingdao Lumber &amp; Packaging" loading="lazy" width="600" height="375">
-        <span class="flow-badge">STEP {n}</span>
-      </div>
-      <div class="flow-body">
-        <h3>{t}</h3>
-        <p>{d}</p>
-        <div class="flow-footer">
-          <span>{sub}</span>
-          <span>{footer_tag}</span>
+    def render_phase_cards(cards):
+        out = []
+        for n, t, d, deliverable, arrow in cards:
+            arrow_cls = "step-arrow done" if arrow == "✓" else "step-arrow"
+            out.append(f'''      <div class="flow-step-card reveal">
+        <div class="card-head">
+          <span class="step-num">{n}</span>
+          <span class="{arrow_cls}">{arrow}</span>
         </div>
-      </div>
-    </div>'''
-        for n, t, sub, img, d, footer_tag in steps)
+        <h4>{t}</h4>
+        <p>{d}</p>
+        <div class="card-deliverable">{deliverable}</div>
+      </div>''')
+        return "\n".join(out)
+
+    p1_html = render_phase_cards(phase1_steps)
+    p2_html = render_phase_cards(phase2_steps)
+    p3_html = render_phase_cards(phase3_steps)
 
     body = f"""
 <div class="page-hero"><div class="wrap">
@@ -627,7 +642,7 @@ def build_about():
   <div style="text-align:center;max-width:820px;margin:0 auto">
     <span class="kicker">END-TO-END PROCESS CONTROL</span>
     <h2 class="section-title reveal">Manufacturing &amp; Project Workflow</h2>
-    <p class="section-sub reveal">A structured 7-stage process flow ensuring drawing compliance, batch consistency, and export readiness from inquiry to delivery.</p>
+    <p class="section-sub reveal">A structured 7-stage flowchart ensuring drawing compliance, batch consistency, and export readiness from inquiry to delivery.</p>
   </div>
 
   <div class="flowchart-wrap">
@@ -636,9 +651,37 @@ def build_about():
 {pipeline_steps}
     </div>
 
-    <!-- Step-by-Step Visual Cards -->
-    <div class="flow-cards-grid">
-{flow_cards}
+    <!-- Phase 1: Engineering & Planning -->
+    <div class="flow-phase-block reveal">
+      <div class="flow-phase-head">
+        <span class="flow-phase-tag">PHASE 1</span>
+        <h3>Project Engineering &amp; Review · 前期规划与技术确认</h3>
+      </div>
+      <div class="flow-cards-row c3">
+{p1_html}
+      </div>
+    </div>
+
+    <!-- Phase 2: Manufacturing & Quality -->
+    <div class="flow-phase-block reveal">
+      <div class="flow-phase-head">
+        <span class="flow-phase-tag">PHASE 2</span>
+        <h3>Fabrication &amp; Quality Control · 精益制造与品质核验</h3>
+      </div>
+      <div class="flow-cards-row c2">
+{p2_html}
+      </div>
+    </div>
+
+    <!-- Phase 3: Export & Logistics -->
+    <div class="flow-phase-block reveal">
+      <div class="flow-phase-head">
+        <span class="flow-phase-tag">PHASE 3</span>
+        <h3>Export Packaging &amp; Logistics · 出口包装与交付协同</h3>
+      </div>
+      <div class="flow-cards-row c2">
+{p3_html}
+      </div>
     </div>
   </div>
 </div></section>

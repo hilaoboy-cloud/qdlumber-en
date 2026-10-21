@@ -104,17 +104,9 @@ def header_zh(rel, slug=""):
       <span class="has-drop"><a class="nav-link" data-nav="industries" href="{rel}zh/industries/data-servers-precision-electronics/">服务行业 ▾</a>
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}zh/applications/#rfq">获取报价</a>
-      <div class="lang-switch">
-        <a class="lang-btn" href="{en_target}" aria-label="English">
-          <img src="{rel}assets/img/flag-us.svg" alt="English" width="18" height="13.5" class="flag-icon">
-          <span>EN</span>
-        </a>
-        <span class="sep">/</span>
-        <a class="lang-btn active" href="#" aria-label="中文版">
-          <img src="{rel}assets/img/flag-cn.svg" alt="中文版" width="18" height="13.5" class="flag-icon">
-          <span>中文</span>
-        </a>
-      </div>
+      <a class="lang-flag-toggle" href="{en_target}" title="Switch to English" aria-label="Switch to English">
+        <img src="{rel}assets/img/flag-us.svg" alt="English" width="22" height="16" class="flag-icon">
+      </a>
     </nav>
   </div>
 </header>"""
@@ -522,21 +514,42 @@ def build_capabilities_zh():
 # ================= ABOUT ZH =================
 def build_about_zh():
     rel = "../../"
-    steps = [
-        ("01", "需求确认", "尺寸重量与工况", "about-engineering-design.webp",
-         "与客户沟通包装设备尺寸、单重、重心位置、装卸方式及运输目的地等基础信息。", "基础信息确认 ➔"),
-        ("02", "图纸审核", "CAD图纸公差复核", "values-precision.webp",
-         "审核客户提供的图纸与技术要求，确认材质要求、承载结构及接口配合尺寸。", "技术规格校验 ➔"),
-        ("03", "工艺规划", "选材下料与排产", "about-material-selection.webp",
-         "确定用木方、胶合板、紧固件及缓冲辅料清单，排定加工工艺与生产批次计划。", "生产排期与工艺 ➔"),
-        ("04", "生产组装", "数控锯切箱体预制", "about-precision-processing.webp",
-         "按照图纸规格完成精确下料、锯切、开槽、钻孔及箱体框架预制组装。", "精准下料组装 ➔"),
-        ("05", "质量检验", "全工序质检查验", "about-quality-inspection.webp",
-         "检查箱体尺寸公差、紧固连接牢固度、木材含水率及 IPPC 标识规范性。", "出厂品质复核 ➔"),
-        ("06", "包装准备", "防护打包配载装柜", "about-packaging-logistics.webp",
-         "按要求配置防潮膜、缓冲衬垫，落实标识贴附及集装箱配载装载准备。", "出口合规包装 ➔"),
-        ("07", "交付协调", "准时物流交接", "about-delivery-support.webp",
-         "根据客户出运节点安排物流承运与现场交接，保障项目按计划准时推进。", "交付与后续协同 ✓"),
+    phase1_steps = [
+        ("01", "需求确认",
+         "与客户沟通包装设备尺寸、单重、重心位置、装卸方式及运输目的地等基础信息。",
+         "产物输出：设备参数与出运工况清单", "➔"),
+        ("02", "图纸审核",
+         "审核客户提供的图纸与技术要求，确认材质要求、承载结构及接口配合尺寸。",
+         "产物输出：CAD图纸公差复核与受力确认", "➔"),
+        ("03", "工艺规划",
+         "确定用木方、胶合板、紧固件及缓冲辅料清单，排定加工工艺与生产批次计划。",
+         "产物输出：板材木方开料单与生产排期", "➔"),
+    ]
+    phase2_steps = [
+        ("04", "生产组装",
+         "按照图纸规格完成精确下料、锯切、开槽、钻孔及箱体框架预制组装。",
+         "产物输出：数控精密切割与箱体构件预制", "➔"),
+        ("05", "质量检验",
+         "检查箱体尺寸公差、紧固连接牢固度、木材含水率及 IPPC 标识规范性。",
+         "产物输出：尺寸公差复检与全工序质检记录", "➔"),
+    ]
+    phase3_steps = [
+        ("06", "包装准备",
+         "按要求配置防潮膜、缓冲衬垫，落实标识贴附及集装箱配载装载准备。",
+         "产物输出：ISPM 15 热处理与集装箱配载装载", "➔"),
+        ("07", "交付协调",
+         "根据客户出运节点安排物流承运与现场交接，保障项目按计划准时推进。",
+         "产物输出：物流承运交接与准时发运交付", "✓"),
+    ]
+
+    all_steps = [
+        ("01", "需求确认", "尺寸与工况"),
+        ("02", "图纸审核", "CAD公差复核"),
+        ("03", "工艺规划", "开料与排产"),
+        ("04", "生产组装", "精密切割预制"),
+        ("05", "质量检验", "全工序质检"),
+        ("06", "包装准备", "热处理与打包"),
+        ("07", "交付协调", "准时发运交接"),
     ]
 
     pipeline_steps = "\n".join(
@@ -545,24 +558,26 @@ def build_about_zh():
       <div class="p-title">{t}</div>
       <div class="p-sub">{sub}</div>
     </div>'''
-        for n, t, sub, _, _, _ in steps)
+        for n, t, sub in all_steps)
 
-    flow_cards = "\n".join(
-        f'''    <div class="flow-card reveal">
-      <div class="flow-img">
-        <img src="{rel}assets/img/{img}" alt="{t} - 青岛拉博尔包装" loading="lazy" width="600" height="375">
-        <span class="flow-badge">阶段 {n}</span>
-      </div>
-      <div class="flow-body">
-        <h3>{t}</h3>
-        <p>{d}</p>
-        <div class="flow-footer">
-          <span>{sub}</span>
-          <span>{footer_tag}</span>
+    def render_phase_cards(cards):
+        out = []
+        for n, t, d, deliverable, arrow in cards:
+            arrow_cls = "step-arrow done" if arrow == "✓" else "step-arrow"
+            out.append(f'''      <div class="flow-step-card reveal">
+        <div class="card-head">
+          <span class="step-num">{n}</span>
+          <span class="{arrow_cls}">{arrow}</span>
         </div>
-      </div>
-    </div>'''
-        for n, t, sub, img, d, footer_tag in steps)
+        <h4>{t}</h4>
+        <p>{d}</p>
+        <div class="card-deliverable">{deliverable}</div>
+      </div>''')
+        return "\n".join(out)
+
+    p1_html = render_phase_cards(phase1_steps)
+    p2_html = render_phase_cards(phase2_steps)
+    p3_html = render_phase_cards(phase3_steps)
 
     body = f"""
 <div class="page-hero"><div class="wrap">
@@ -637,9 +652,37 @@ def build_about_zh():
 {pipeline_steps}
     </div>
 
-    <!-- 阶段图文详情卡片 -->
-    <div class="flow-cards-grid">
-{flow_cards}
+    <!-- Phase 1: Engineering & Planning -->
+    <div class="flow-phase-block reveal">
+      <div class="flow-phase-head">
+        <span class="flow-phase-tag">阶段一</span>
+        <h3>前期规划与技术确认 · Engineering &amp; Review</h3>
+      </div>
+      <div class="flow-cards-row c3">
+{p1_html}
+      </div>
+    </div>
+
+    <!-- Phase 2: Manufacturing & Quality -->
+    <div class="flow-phase-block reveal">
+      <div class="flow-phase-head">
+        <span class="flow-phase-tag">阶段二</span>
+        <h3>精益制造与品质核验 · Fabrication &amp; QA</h3>
+      </div>
+      <div class="flow-cards-row c2">
+{p2_html}
+      </div>
+    </div>
+
+    <!-- Phase 3: Export & Logistics -->
+    <div class="flow-phase-block reveal">
+      <div class="flow-phase-head">
+        <span class="flow-phase-tag">阶段三</span>
+        <h3>出口包装与交付协同 · Export &amp; Logistics</h3>
+      </div>
+      <div class="flow-cards-row c2">
+{p3_html}
+      </div>
     </div>
   </div>
 </div></section>
