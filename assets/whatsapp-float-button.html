@@ -1,0 +1,35 @@
+<style>
+#qdwa-btn{position:fixed;right:22px;bottom:22px;width:60px;height:60px;border-radius:50%;background:#25D366;box-shadow:0 4px 14px rgba(0,0,0,.25);cursor:pointer;z-index:99999;display:flex;align-items:center;justify-content:center;transition:transform .2s}
+#qdwa-btn:hover{transform:scale(1.08)}
+#qdwa-card{position:fixed;right:22px;bottom:94px;width:320px;max-width:calc(100vw - 44px);background:#fff;border-radius:14px;box-shadow:0 8px 30px rgba(0,0,0,.25);z-index:99999;display:none;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif}
+#qdwa-head{background:#075E54;color:#fff;padding:12px 14px;font-size:15px;font-weight:600;display:flex;justify-content:space-between;align-items:center}
+#qdwa-head small{display:block;font-weight:400;font-size:12px;opacity:.85}
+#qdwa-close{background:none;border:none;color:#fff;font-size:18px;cursor:pointer;line-height:1}
+#qdwa-body{padding:14px}
+#qdwa-body p{margin:0 0 10px;font-size:13px;color:#444}
+#qdwa-msg{width:100%;height:84px;border:1px solid #ddd;border-radius:8px;padding:8px;font-size:13px;resize:vertical;box-sizing:border-box}
+#qdwa-send{margin-top:10px;width:100%;background:#25D366;color:#fff;border:none;border-radius:8px;padding:11px;font-size:14px;font-weight:600;cursor:pointer}
+#qdwa-send:hover{background:#1EBE5B}
+</style>
+<div id="qdwa-btn" title="Chat on WhatsApp">
+<svg width="34" height="34" viewBox="0 0 32 32" fill="#fff"><path d="M16 3C9.4 3 4 8.4 4 15c0 2.4.7 4.6 2 6.5L4 29l7.7-2c1.8 1 3.9 1.6 6.1 1.6h.1c6.6 0 12-5.4 12-12S22.6 3 16 3zm0 21.8c-2 0-3.9-.5-5.5-1.5l-.4-.2-4.6 1.2 1.2-4.4-.3-.4c-1.1-1.7-1.7-3.7-1.7-5.7C4.9 9.4 9.6 4.7 16 4.7S27.1 9.4 27.1 15 22.4 24.8 16 24.8zm6-8.1c-.3-.2-1.9-1-2.2-1.1-.3-.1-.5-.2-.8.2-.2.3-.9 1.1-1.1 1.3-.2.2-.4.3-.8.1-.3-.2-1.4-.5-2.7-1.7-1-1-1.7-2.1-1.9-2.5-.2-.3 0-.5.2-.7l.5-.6c.2-.2.2-.4.3-.6.1-.2 0-.4 0-.6-.1-.2-.8-1.9-1.1-2.6-.3-.7-.6-.6-.8-.6h-.7c-.2 0-.6.2-.9.5-.3.3-1.2 1.2-1.2 2.9s1.2 3.4 1.4 3.6c.2.2 2.4 3.7 5.8 5.2.8.4 1.5.6 2 .7.8.3 1.6.2 2.2.1.7-.1 1.9-.8 2.2-1.6.3-.8.3-1.4.2-1.6-.1-.1-.3-.2-.7-.4z"/></svg>
+</div>
+<div id="qdwa-card">
+<div id="qdwa-head"><div>Qingdao Lumber &amp; Packaging<small>Typically replies within a day</small></div><button id="qdwa-close" aria-label="Close">×</button></div>
+<div id="qdwa-body">
+<p>Hello, I'm Evan Chen from Qingdao Lumber. How can I help you?</p>
+<textarea id="qdwa-msg">Hello Qingdao Lumber, I'd like to inquire about your OEM wood packaging solutions.</textarea>
+<button id="qdwa-send">Send via WhatsApp</button>
+</div>
+</div>
+<script>
+(function(){
+var btn=document.getElementById('qdwa-btn'),card=document.getElementById('qdwa-card');
+btn.onclick=function(){card.style.display=card.style.display==='block'?'none':'block';};
+document.getElementById('qdwa-close').onclick=function(){card.style.display='none';};
+document.getElementById('qdwa-send').onclick=function(){
+var t=encodeURIComponent(document.getElementById('qdwa-msg').value);
+window.open('https://wa.me/8613405101358?text='+t,'_blank');
+};
+})();
+</script>

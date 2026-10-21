@@ -4,7 +4,7 @@ Run: python3 gen_site.py   (outputs into ~/workspace/qdlumber-en-rebuild/)
 """
 import os, json, shutil
 
-OUT = os.path.expanduser("~/workspace/qdlumber-en-rebuild")
+OUT = os.path.dirname(os.path.abspath(__file__))
 CANON = "https://en.qdlumber.com"
 WA_LINK = "https://wa.me/8613405101358"
 EMAIL = "evan.chen@qdlumberco.com"
@@ -25,8 +25,12 @@ INDUSTRIES = [
      "Specialized protective packaging for fragile glass, ceramic and porcelain insulators."),
 ]
 
-with open(os.path.expanduser("~/workspace/goals/qdlumber-english-site-management-strikingly/hidden_files/whatsapp-float-button.html"), encoding="utf-8") as f:
-    WA_CODE = f.read()
+WA_FILE = os.path.join(OUT, "assets", "whatsapp-float-button.html")
+if os.path.exists(WA_FILE):
+    with open(WA_FILE, encoding="utf-8") as f:
+        WA_CODE = f.read()
+else:
+    WA_CODE = ""
 
 ORG_JSONLD = {
     "@context": "https://schema.org",
@@ -123,6 +127,12 @@ def footer(rel):
       <p style="margin-top:12px"><strong style="color:#fff">Office</strong><br>{OFFICE[0]}<br>
       Tel: <a href="tel:+8613405101358">{OFFICE[1]}</a><br>
       Email: <a href="mailto:{OFFICE[2]}">{OFFICE[2]}</a></p>
+      <div style="margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.1)">
+        <span style="display:block;font-size:12px;text-transform:uppercase;letter-spacing:1px;color:#fff;margin-bottom:6px">Our Network</span>
+        <a href="http://www.marinelumberco.com" target="_blank" rel="noopener" style="display:block;font-size:13px;color:#8fa79b;margin-bottom:4px">Marine Lumber Co. ↗</a>
+        <a href="https://marinedefensepackaging.com" target="_blank" rel="noopener" style="display:block;font-size:13px;color:#8fa79b;margin-bottom:4px">Marine Defense Packaging ↗</a>
+        <a href="http://www.qdlumber.com" target="_blank" rel="noopener" style="display:block;font-size:13px;color:#8fa79b">Qingdao Lumber &amp; Packaging (China) ↗</a>
+      </div>
     </div>
   </div>
   <div class="wrap footer-bottom">
@@ -193,9 +203,9 @@ def build_home():
     body = f"""
 <section class="hero"><div class="wrap">
   <div class="hero-inner reveal in">
-    <span class="kicker" style="color:#7bd88f">OEM Wood Packaging Manufacturer · Qingdao, China</span>
-    <h1>Your Reliable OEM Packaging Solutions Partner</h1>
-    <p class="lead">Reduce supply chain risk — ensure stable production, controlled quality, and reliable delivery, minimizing uncertainty across global OEM programs.</p>
+    <span class="kicker" style="color:#7bd88f">Your Reliable OEM Packaging Solutions Partner</span>
+    <h1>Engineered OEM Packaging Systems for Global Supply Chains</h1>
+    <p class="lead">High-performance wood packaging solutions designed for precision, cost efficiency, and reliable export — supporting industrial equipment and OEM programs worldwide.<br><span style="display:inline-block;margin-top:10px;font-size:0.95em;color:#c0dfcc">Built for OEM packaging programs requiring scalability, consistency, and cost control.</span></p>
     <div class="hero-actions">
       <a class="btn btn-green" href="{rel}case-studies/#rfq">Request a Quote</a>
       <a class="btn btn-ghost" href="{rel}solutions/">Explore Solutions</a>
@@ -203,9 +213,26 @@ def build_home():
   </div>
 </div></section>
 
+<section style="padding:44px 0 0"><div class="wrap">
+  <div class="grid g3">
+    <div class="tcard reveal">
+      <h3 style="color:var(--g600);margin-bottom:8px">Reduce Supply Chain Risk</h3>
+      <p>Ensure stable production, controlled quality, and reliable delivery — minimizing uncertainty across global OEM programs.</p>
+    </div>
+    <div class="tcard reveal">
+      <h3 style="color:var(--g600);margin-bottom:8px">Scale Your Production Capacity</h3>
+      <p>Expand your manufacturing capability in China without additional investment, supported by integrated production and export-ready operations.</p>
+    </div>
+    <div class="tcard reveal">
+      <h3 style="color:var(--g600);margin-bottom:8px">Optimize Total Cost</h3>
+      <p>Through value engineering, material optimization, and flat-pack designs, we reduce packaging cost, freight volume, and overall logistics expenses.</p>
+    </div>
+  </div>
+</div></section>
+
 <section><div class="wrap">
   <h2 class="section-title reveal">Why Global OEMs Choose Us</h2>
-  <p class="section-sub reveal">Precision manufacturing, disciplined process control, and export-ready logistics — built for demanding industrial programs.</p>
+  <p class="section-sub reveal">Precision manufacturing, disciplined process control, and export-ready logistics — backed by 20+ years of industrial OEM packaging expertise.</p>
   <div class="grid g5">{value_cards}
   </div>
 </div></section>
@@ -252,6 +279,10 @@ def build_solutions():
              "acceptedAnswer": {"@type": "Answer", "text": "We specialize in custom wooden crates, knock-down (flat-pack) crate kits, server crates, export packaging systems and structural metal components for industrial crating."}},
             {"@type": "Question", "name": "What information do you need to start an OEM packaging project?",
              "acceptedAnswer": {"@type": "Answer", "text": "Product dimensions and weight, fragility and handling requirements, shipment mode and destination, order quantities, and drawings or samples if available."}},
+            {"@type": "Question", "name": "Are all solid wood materials ISPM-15 compliant for international shipping?",
+             "acceptedAnswer": {"@type": "Answer", "text": "Yes. 100% of our solid wood lumber and components undergo certified heat treatment and carry the official IPPC stamp, accompanied by full phytosanitary documentation to guarantee smooth customs clearance worldwide."}},
+            {"@type": "Question", "name": "How do knockdown (flat-pack) crate kits reduce logistics and freight costs?",
+             "acceptedAnswer": {"@type": "Answer", "text": "Our flat-pack knockdown crate systems maximize container cubing efficiency by up to 60%, significantly lowering ocean freight and domestic transport costs while enabling fast, reliable on-site assembly at your destination facility."}}
         ]}
     extra = f'\n<script type="application/ld+json">{json.dumps(faq_json, ensure_ascii=False)}</script>'
     products = [
@@ -331,6 +362,8 @@ def build_solutions():
     <div class="faq-item reveal"><button class="faq-q">Can you manufacture packaging based on our technical drawings or samples?</button><div class="faq-a"><p>Yes. Send us your technical drawings, CAD files or samples, and our engineering team will design and manufacture crate systems built to your exact specifications — every dimension, every joint, every component.</p></div></div>
     <div class="faq-item reveal"><button class="faq-q">What types of industrial packaging solutions do you specialize in?</button><div class="faq-a"><p>We specialize in custom wooden crates, knock-down (flat-pack) crate kits, server crates, export packaging systems, and structural metal components for industrial crating — all ISPM-15 compliant and export-ready.</p></div></div>
     <div class="faq-item reveal"><button class="faq-q">What information do you need to start an OEM packaging project?</button><div class="faq-a"><p>Product dimensions and weight, fragility and handling requirements, shipment mode and destination country, estimated order quantities, and any drawings or samples you already have. The more detail you share, the faster we can engineer the right solution.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q">Are all solid wood materials ISPM-15 compliant for international shipping?</button><div class="faq-a"><p>Yes. 100% of our solid wood lumber and components undergo certified heat treatment and carry the official IPPC stamp, accompanied by full phytosanitary documentation to guarantee smooth customs clearance worldwide.</p></div></div>
+    <div class="faq-item reveal"><button class="faq-q">How do knockdown (flat-pack) crate kits reduce logistics and freight costs?</button><div class="faq-a"><p>Our flat-pack knockdown crate systems maximize container cubing efficiency by up to 60%, significantly lowering ocean freight and domestic transport costs while enabling fast, reliable on-site assembly at your destination facility.</p></div></div>
   </div>
 </div></section>
 """ + cta_band(rel, "Start Your OEM Packaging Project",
@@ -725,6 +758,36 @@ def build_seo():
     write("sitemap.xml", "\n".join(sm) + "\n")
     write("robots.txt", f"User-agent: *\nAllow: /\n\nSitemap: {CANON}/sitemap.xml\n")
 
+# ================= LEGACY REDIRECTS =================
+def build_redirects():
+    redirects = [
+        ("home/index.html", f"{CANON}/"),
+        ("2/index.html", f"{CANON}/capabilities/"),
+        ("3/index.html", f"{CANON}/about/"),
+        ("case-study/index.html", f"{CANON}/case-studies/"),
+        ("case-study-more/index.html", f"{CANON}/case-studies/"),
+        ("industries/electronics-precision/index.html", f"{CANON}/industries/data-servers-precision-electronics/"),
+        ("industries/1/index.html", f"{CANON}/industries/data-servers-precision-electronics/"),
+        ("industries-ev-battery-charging/index.html", f"{CANON}/industries/ev-battery-charging/"),
+        ("industries-industrial-infra/index.html", f"{CANON}/industries/industrial-machinery-infrastructure/"),
+        ("industries-power-electrical/index.html", f"{CANON}/industries/high-voltage-insulators-power-transmission/"),
+    ]
+    for path, target in redirects:
+        content = f"""<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Redirecting...</title>
+<link rel="canonical" href="{target}">
+<meta http-equiv="refresh" content="0; url={target}">
+<script>window.location.replace('{target}');</script>
+</head>
+<body>
+<p>Redirecting to <a href="{target}">{target}</a>...</p>
+</body>
+</html>"""
+        write(path, content)
+
 # ================= MAIN =================
 def main():
     write("index.html", build_home())
@@ -734,6 +797,7 @@ def main():
     write("case-studies/index.html", build_case_studies())
     for slug, html in build_industries().items():
         write(f"industries/{slug}/index.html", html)
+    build_redirects()
     build_seo()
     # copy images already in assets/img (populated by image pipeline)
     print("done.")
