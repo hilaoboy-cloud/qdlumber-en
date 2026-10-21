@@ -103,8 +103,8 @@ def header(rel, slug=""):
       <span class="has-drop"><a class="nav-link" data-nav="industries" href="{rel}industries/data-servers-precision-electronics/">Industries ▾</a>
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}applications/#rfq">Request a Quote</a>
-      <a class="lang-flag-toggle" href="{zh_target}" title="切换至中文版" aria-label="切换至中文版">
-        <img src="{rel}assets/img/flag-cn.svg" alt="中文版" width="22" height="16" class="flag-icon">
+      <a class="lang-flag-toggle" href="{zh_target}" title="Switch to Chinese" aria-label="Switch to Chinese">
+        <img src="{rel}assets/img/flag-cn.svg" alt="Chinese" width="26" height="19.5" class="flag-icon">
       </a>
     </nav>
   </div>
@@ -655,7 +655,7 @@ def build_about():
     <div class="flow-phase-block reveal">
       <div class="flow-phase-head">
         <span class="flow-phase-tag">PHASE 1</span>
-        <h3>Project Engineering &amp; Review · 前期规划与技术确认</h3>
+        <h3>Project Engineering &amp; Review</h3>
       </div>
       <div class="flow-cards-row c3">
 {p1_html}
@@ -666,7 +666,7 @@ def build_about():
     <div class="flow-phase-block reveal">
       <div class="flow-phase-head">
         <span class="flow-phase-tag">PHASE 2</span>
-        <h3>Fabrication &amp; Quality Control · 精益制造与品质核验</h3>
+        <h3>Fabrication &amp; Quality Control</h3>
       </div>
       <div class="flow-cards-row c2">
 {p2_html}
@@ -677,7 +677,7 @@ def build_about():
     <div class="flow-phase-block reveal">
       <div class="flow-phase-head">
         <span class="flow-phase-tag">PHASE 3</span>
-        <h3>Export Packaging &amp; Logistics · 出口包装与交付协同</h3>
+        <h3>Export Packaging &amp; Logistics</h3>
       </div>
       <div class="flow-cards-row c2">
 {p3_html}

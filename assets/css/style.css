@@ -51,9 +51,9 @@ section{padding:72px 0}
 .drop a:hover{background:var(--g50);color:var(--g700)}
 .burger{display:none;background:none;border:none;cursor:pointer;padding:8px}
 .burger span{display:block;width:26px;height:2.5px;background:var(--ink);margin:5px 0;border-radius:2px}
-.lang-flag-toggle{display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:50%;background:#fff;border:1.5px solid #d5dbd6;box-shadow:0 1px 4px rgba(0,0,0,0.06);margin-left:12px;vertical-align:middle;text-decoration:none;transition:transform .2s,border-color .2s,box-shadow .2s;flex-shrink:0}
-.lang-flag-toggle:hover{transform:scale(1.1);border-color:var(--g500);box-shadow:0 2px 10px rgba(0,166,81,0.22)}
-.lang-flag-toggle .flag-icon{width:22px;height:16px;border-radius:2px;box-shadow:0 0 1px rgba(0,0,0,0.3);display:block;object-fit:cover;pointer-events:none}
+.lang-flag-toggle{display:inline-flex;align-items:center;justify-content:center;margin-left:12px;vertical-align:middle;text-decoration:none;transition:transform .2s,opacity .2s;flex-shrink:0;background:none;border:none;box-shadow:none;padding:0}
+.lang-flag-toggle:hover{transform:scale(1.12);opacity:.92}
+.lang-flag-toggle .flag-icon{width:26px;height:19.5px;border-radius:3px;box-shadow:0 1px 3px rgba(0,0,0,0.22);display:block;object-fit:cover;pointer-events:none}
 
 /* ---------- hero ---------- */
 .hero{background:#071c12 url('../img/hero-poster.webp') center center / cover no-repeat;color:#eef4f0;min-height:calc(100vh - 72px);max-height:840px;display:flex;align-items:center;padding:80px 0;position:relative;overflow:hidden}

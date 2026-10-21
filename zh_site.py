@@ -104,8 +104,8 @@ def header_zh(rel, slug=""):
       <span class="has-drop"><a class="nav-link" data-nav="industries" href="{rel}zh/industries/data-servers-precision-electronics/">服务行业 ▾</a>
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}zh/applications/#rfq">获取报价</a>
-      <a class="lang-flag-toggle" href="{en_target}" title="Switch to English" aria-label="Switch to English">
-        <img src="{rel}assets/img/flag-us.svg" alt="English" width="22" height="16" class="flag-icon">
+      <a class="lang-flag-toggle" href="{en_target}" title="Switch to English" aria-label="切换至英文版">
+        <img src="{rel}assets/img/flag-us.svg" alt="English" width="26" height="19.5" class="flag-icon">
       </a>
     </nav>
   </div>
