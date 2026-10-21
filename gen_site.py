@@ -49,6 +49,13 @@ ORG_JSONLD = {
 
 def head(rel, slug, title, desc, extra=""):
     canon = CANON + ("/" if not slug else "/" + slug + "/")
+    home_preloads = ""
+    if slug == "":
+        home_preloads = f"""<link rel="preconnect" href="https://player.vimeo.com">
+<link rel="preconnect" href="https://f.vimeocdn.com">
+<link rel="preconnect" href="https://i.vimeocdn.com">
+<link rel="dns-prefetch" href="https://player.vimeo.com">
+<link rel="preload" as="image" href="{rel}assets/img/hero-poster.webp">"""
     return f"""<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -65,6 +72,7 @@ def head(rel, slug, title, desc, extra=""):
 <link rel="icon" type="image/webp" href="{rel}assets/img/favicon.webp">
 <link rel="icon" type="image/png" href="{rel}assets/img/favicon.png">
 <link rel="apple-touch-icon" href="{rel}assets/img/favicon.png">
+{home_preloads}
 <link rel="stylesheet" href="{rel}assets/css/style.css">
 <script type="application/ld+json">{json.dumps(ORG_JSONLD, ensure_ascii=False)}</script>
 {extra}</head>"""
@@ -213,14 +221,15 @@ def build_home():
     body = f"""
 <section class="hero">
   <div class="hero-video-bg">
-    <iframe src="https://player.vimeo.com/video/1190319624?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>
+    <iframe src="https://player.vimeo.com/video/1190319624?background=1&autoplay=1&loop=1&byline=0&title=0&muted=1" frameborder="0" allow="autoplay; fullscreen" allowfullscreen loading="eager" fetchpriority="high"></iframe>
   </div>
   <div class="hero-overlay"></div>
-  <div class="wrap">
-    <div class="hero-inner reveal in">
-      <span class="kicker" style="color:#7bd88f">Your Reliable OEM Packaging Solutions Partner</span>
-      <h1>Engineered OEM Packaging Systems for Global Supply Chains</h1>
-      <p class="lead">High-performance wood packaging solutions designed for precision, cost efficiency, and reliable export — supporting industrial equipment and OEM programs worldwide.<br><span style="display:inline-block;margin-top:10px;font-size:0.95em;color:#c0dfcc">Built for OEM packaging programs requiring scalability, consistency, and cost control.</span></p>
+  <div class="wrap hero-wrap">
+    <div class="hero-content reveal in">
+      <span class="hero-kicker">YOUR RELIABLE OEM PACKAGING SOLUTIONS PARTNER</span>
+      <h1 class="hero-title">Engineered OEM Packaging Systems<br>for Global Supply Chains</h1>
+      <p class="hero-lead">High-performance wood packaging solutions designed for precision, cost efficiency, and reliable export — supporting industrial equipment and OEM programs worldwide.</p>
+      <p class="hero-sublead">Built for OEM packaging programs requiring scalability, consistency, and cost control.</p>
       <div class="hero-actions">
         <a class="btn btn-green" href="{rel}case-studies/#rfq">Request a Quote</a>
         <a class="btn btn-ghost" href="{rel}solutions/">Explore Solutions</a>
@@ -522,6 +531,31 @@ def build_about():
     <p style="margin-top:16px">Each OEM kit includes structural elements, metal fittings, fasteners, and protective materials, all matched and assembled into complete transport-ready systems for efficient deployment.</p>
     <p style="margin-top:16px">We operate as an integrated extension of our customers' supply chain, supporting OEM programs with structured processes, repeatable quality, and reliable global delivery.</p>
     <p style="margin-top:16px">From engineering review to final shipment, every stage is managed with precision and consistency.</p>
+  </div>
+</div></section>
+
+<section style="padding:0 0 64px"><div class="wrap">
+  <div class="split" style="gap:36px;align-items:start">
+    <div class="reveal">
+      <div class="ph" style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)">
+        <img src="{rel}assets/img/about-factory-aerial.webp" alt="Aerial birds-eye view of Qingdao Lumber &amp; Packaging manufacturing facility in Jimo, Qingdao" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="margin-top:16px">
+        <span class="kicker" style="color:var(--g600);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Manufacturing Facility</span>
+        <h3 style="font-size:1.24rem;margin:6px 0 8px;color:var(--g700)">Jimo Production Base · Qingdao</h3>
+        <p style="color:var(--muted);font-size:0.96rem;line-height:1.6">Full-scale manufacturing facility with 100,000+ SQM operational capacity, integrated CNC automated wood processing, structural steel fabrication, and certified ISPM-15 heat treatment facilities.</p>
+      </div>
+    </div>
+    <div class="reveal">
+      <div class="ph" style="aspect-ratio:16/9;border-radius:14px;overflow:hidden;box-shadow:var(--shadow)">
+        <img src="{rel}assets/img/about-team-group.webp" alt="Qingdao Lumber &amp; Packaging management, engineering, and manufacturing team group photo" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block">
+      </div>
+      <div style="margin-top:16px">
+        <span class="kicker" style="color:var(--g600);font-size:0.82rem;font-weight:700;letter-spacing:0.08em;text-transform:uppercase">Our OEM Team</span>
+        <h3 style="font-size:1.24rem;margin:6px 0 8px;color:var(--g700)">Dedicated Engineering &amp; Operations</h3>
+        <p style="color:var(--muted);font-size:0.96rem;line-height:1.6">Experienced packaging engineers, CNC specialists, quality inspectors, and logistics professionals committed to repeatable precision, export compliance, and on-time global fulfillment.</p>
+      </div>
+    </div>
   </div>
 </div></section>
 
