@@ -141,14 +141,6 @@ def footer(rel):
       <ul>{ind_links}</ul>
     </div>
     <div>
-      <h4>OUR NETWORK</h4>
-      <ul>
-        <li><a href="http://www.marinelumberco.com" target="_blank" rel="noopener">Marine Lumber Co. ↗</a></li>
-        <li><a href="https://marinedefensepackaging.com" target="_blank" rel="noopener">Marine Defense Packaging ↗</a></li>
-        <li><a href="http://www.qdlumber.com" target="_blank" rel="noopener">Qingdao Lumber &amp; Packaging (China) ↗</a></li>
-      </ul>
-    </div>
-    <div>
       <h4>CONTACT</h4>
       <div class="footer-contact-block">
         <strong>Factory</strong>

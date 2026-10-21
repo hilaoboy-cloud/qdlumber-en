@@ -160,7 +160,7 @@ section{padding:72px 0}
 
 /* ---------- footer ---------- */
 .site-footer{background:#0d1712;color:#b9c6bf;padding:42px 0 0;font-size:.90rem;line-height:1.55}
-.footer-grid{display:grid;grid-template-columns:1.4fr 0.9fr 1.2fr 1.1fr 1.4fr;gap:28px;padding-bottom:24px}
+.footer-grid{display:grid;grid-template-columns:1.5fr 0.9fr 1fr 1.4fr;gap:36px;padding-bottom:24px}
 .site-footer h4{color:#fff;font-size:.80rem;font-weight:700;text-transform:uppercase;letter-spacing:.12em;margin-bottom:10px}
 .site-footer ul{list-style:none}
 .site-footer ul li{margin-bottom:6px}
@@ -243,7 +243,7 @@ section{padding:72px 0}
   .split{grid-template-columns:1fr;gap:20px}
   .split .ph{height:auto;aspect-ratio:16/10}
   .split .split-content,.split > div:not(.ph){padding:26px 22px}
-  .footer-grid{grid-template-columns:repeat(3,1fr)}
+  .footer-grid{grid-template-columns:repeat(2,1fr);gap:28px}
   .gallery{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:680px){
