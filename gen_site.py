@@ -98,7 +98,7 @@ def footer(rel):
 <footer class="site-footer">
   <div class="wrap footer-grid">
     <div class="footer-brand">
-      <img src="{rel}assets/img/logo-footer.webp" alt="Qingdao Lumber &amp; Packaging" width="220" height="83">
+      <img src="{rel}assets/img/logo-footer.webp" alt="Qingdao Lumber &amp; Packaging" width="200" height="75">
       <p>U.S.-owned OEM manufacturer of custom wooden crates, knock-down crate kits and export packaging systems — serving global industrial programs for 20+ years.</p>
       <div class="social-row">
         <a href="https://www.linkedin.com/company/qdlumber/" aria-label="LinkedIn" target="_blank" rel="noopener">in</a>
@@ -122,20 +122,26 @@ def footer(rel):
       <ul>{ind_links}</ul>
     </div>
     <div>
+      <h4>OUR NETWORK</h4>
+      <ul>
+        <li><a href="http://www.marinelumberco.com" target="_blank" rel="noopener">Marine Lumber Co. ↗</a></li>
+        <li><a href="https://marinedefensepackaging.com" target="_blank" rel="noopener">Marine Defense Packaging ↗</a></li>
+        <li><a href="http://www.qdlumber.com" target="_blank" rel="noopener">Qingdao Lumber &amp; Packaging (China) ↗</a></li>
+      </ul>
+    </div>
+    <div>
       <h4>CONTACT</h4>
-      <p><strong style="color:#fff">Factory</strong><br>{FACTORY[0]}<br>
-      Tel: <a href="tel:+8618602619997">{FACTORY[1]}</a><br>
-      Email: <a href="mailto:{FACTORY[2]}">{FACTORY[2]}</a></p>
-      <p style="margin-top:12px"><strong style="color:#fff">Office</strong><br>{OFFICE[0]}<br>
-      Tel: <a href="tel:+8613405101358">{OFFICE[1]}</a><br>
-      Email: <a href="mailto:{OFFICE[2]}">{OFFICE[2]}</a></p>
-      <div style="margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.12)">
-        <h4>OUR NETWORK</h4>
-        <ul style="margin-top:10px">
-          <li><a href="http://www.marinelumberco.com" target="_blank" rel="noopener">Marine Lumber Co. ↗</a></li>
-          <li><a href="https://marinedefensepackaging.com" target="_blank" rel="noopener">Marine Defense Packaging ↗</a></li>
-          <li><a href="http://www.qdlumber.com" target="_blank" rel="noopener">Qingdao Lumber &amp; Packaging (China) ↗</a></li>
-        </ul>
+      <div class="footer-contact-block">
+        <strong>Factory</strong>
+        <span>{FACTORY[0]}</span><br>
+        Tel: <a href="tel:+8618602619997">{FACTORY[1]}</a><br>
+        Email: <a href="mailto:{FACTORY[2]}">{FACTORY[2]}</a>
+      </div>
+      <div class="footer-contact-block" style="margin-top:10px">
+        <strong>Office</strong>
+        <span>{OFFICE[0]}</span><br>
+        Tel: <a href="tel:+8613405101358">{OFFICE[1]}</a><br>
+        Email: <a href="mailto:{OFFICE[2]}">{OFFICE[2]}</a>
       </div>
     </div>
   </div>
@@ -335,9 +341,10 @@ def build_solutions():
   <h2 class="section-title reveal" style="margin-top:56px">Metal Components &amp; Knockdown Kit Systems</h2>
   <p class="section-sub reveal">Engineered wood and metal-based modular packaging systems designed for efficient assembly, structural strength, and optimized global logistics performance. Fully customized OEM solutions ensure precise fit, reduced shipping volume, and consistent performance across industrial applications.</p>
 
-  <div class="split reveal" style="margin-bottom:56px">
+  <div class="split reveal" style="margin-bottom:36px">
     <div class="ph"><img src="{rel}assets/img/solutions-knockdown-kits.webp" alt="Flat-pack knockdown wooden crate kits with metal frames stacked in the factory" loading="lazy" width="800" height="600"></div>
-    <div>
+    <div class="split-content">
+      <span class="kicker">Engineered Modular Crates</span>
       <h3>Knockdown Crate Kits</h3>
       <p><em>Engineered OEM flat-pack packaging systems combining precision wood panels and structural metal components for efficient on-site assembly at destination.</em></p>
       <ul class="check-list">
@@ -347,8 +354,9 @@ def build_solutions():
     </div>
   </div>
 
-  <div class="split reveal" style="margin-bottom:56px">
-    <div>
+  <div class="split reveal" style="margin-bottom:36px">
+    <div class="split-content">
+      <span class="kicker">Fabrication &amp; Reinforcement</span>
       <h3>Structural Metal Components</h3>
       <p><em>High-strength engineered metal components designed for structural reinforcement in industrial crating systems.</em></p>
       <ul class="check-list">
@@ -362,7 +370,8 @@ def build_solutions():
 
   <div class="split reveal">
     <div class="ph"><img src="{rel}assets/img/solutions-fastening-systems.webp" alt="Custom metal reinforcement plates for structural crate fastening" loading="lazy" width="800" height="956"></div>
-    <div>
+    <div class="split-content">
+      <span class="kicker">Hardware &amp; Fixtures</span>
       <h3>Connection &amp; Fastening Systems</h3>
       <p><em>Custom-engineered sheet metal reinforcement plates designed for structural strengthening in industrial crate systems.</em></p>
       <ul class="check-list">
@@ -480,10 +489,10 @@ def build_about():
     step_html = ""
     for i, (fn, alt, t, d) in enumerate(steps):
         img = f'<div class="ph"><img src="{rel}assets/img/{fn}" alt="{alt}" loading="lazy"></div>'
-        txt = (f'<div><span class="kicker">Step {i+1:02d}</span><h3>{t}</h3>'
-               f'<p style="margin-top:10px">{d}</p></div>')
+        txt = (f'<div class="split-content"><span class="kicker">Step {i+1:02d}</span><h3>{t}</h3>'
+               f'<p style="margin-top:12px;color:var(--muted);font-size:1.02rem;line-height:1.6">{d}</p></div>')
         inner = img + txt if i % 2 == 0 else txt + img
-        step_html += f'\n  <div class="split reveal" style="margin-bottom:48px">{inner}</div>'
+        step_html += f'\n  <div class="split reveal" style="margin-bottom:32px">{inner}</div>'
     body = f"""
 <div class="page-hero"><div class="wrap">
   <div class="breadcrumb"><a href="{rel}">Home</a> / About Us</div>
@@ -553,7 +562,7 @@ def build_case_studies():
         ("High-volume relocation logistics",
          "ISPM-15 compliant reinforced KD structure designed for maximum container efficiency and repeat usage.",
          "Flat-pack system reduces freight cost while improving stacking strength and operational efficiency.",
-         None, None),
+         "case-relocation-liftvan.webp", "Knockdown flat-pack crate kit stacked for high-volume relocation logistics"),
     ]
     def case_card(app, focus, value, img, alt):
         inner = f"""
@@ -561,14 +570,10 @@ def build_case_studies():
       <h3>{app}</h3>
       <p style="margin-top:10px"><strong>Engineering Focus:</strong> {focus}</p>
       <p style="margin-top:8px;color:var(--muted)"><strong>Key Value:</strong> {value}</p>"""
-        if img:
-            return f"""
+        return f"""
     <div class="card reveal"><div class="ph portrait"><img src="{rel}assets/img/{img}" alt="{alt}" loading="lazy"></div>
       <div class="bd">{inner}
       </div></div>"""
-        return f"""
-    <div class="tcard reveal">{inner}
-    </div>"""
     cards = "\n".join(case_card(*c) for c in cases)
     body = f"""
 <div class="page-hero"><div class="wrap">
@@ -614,6 +619,13 @@ def build_case_studies():
                 "Real-world engineered packaging applications across data centers, energy, industrial machinery and infrastructure — plus a direct RFQ form.", body)
 
 # ================= INDUSTRY PAGES =================
+INDUSTRY_FEATURE_IMAGES = {
+    "data-servers-precision-electronics": ("case-data-server.webp", "Custom wooden crate designed for data servers and electronics"),
+    "ev-battery-charging": ("solutions-battery-crates.webp", "Heavy-duty UN38.3 compliant wooden crate for EV battery packs"),
+    "industrial-machinery-infrastructure": ("case-industrial-printer.webp", "Engineered wooden crate for industrial machinery and infrastructure"),
+    "high-voltage-insulators-power-transmission": ("case-glass-insulator.webp", "Reinforced wooden crates for high-voltage glass and ceramic insulators"),
+}
+
 def industry_page(slug, short, h1, title, desc, intro_paras, approach, solutions, challenges, scope, objective):
     rel = "../../"
     paras = "\n".join(f"    <p style=\"margin-top:14px\">{p}</p>" for p in intro_paras)
@@ -621,6 +633,7 @@ def industry_page(slug, short, h1, title, desc, intro_paras, approach, solutions
     cha = "\n".join(f"      <li>{c}</li>" for c in challenges)
     sco = "\n".join(f"      <li>{s}</li>" for s in scope)
     wa_text = quote(f"Hello Qingdao Lumber, I'd like to discuss packaging for {short}.")
+    img_fn, img_alt = INDUSTRY_FEATURE_IMAGES.get(slug, ("knockdown-kits-flatpack.webp", short))
     body = f"""
 <div class="page-hero"><div class="wrap">
   <div class="breadcrumb"><a href="{rel}">Home</a> / <a href="{rel}industries/data-servers-precision-electronics/">Industries</a> / {h1.split('|')[0].strip()}</div>
@@ -628,22 +641,29 @@ def industry_page(slug, short, h1, title, desc, intro_paras, approach, solutions
   <p class="lead">{objective}</p>
 </div></div>
 
-<section><div class="wrap" style="max-width:880px">
-  <div class="reveal">{paras}</div>
+<section><div class="wrap">
+  <div class="split reveal" style="margin-bottom:20px">
+    <div class="ph"><img src="{rel}assets/img/{img_fn}" alt="{img_alt}" loading="lazy"></div>
+    <div class="split-content">
+      <span class="kicker">Industry Overview</span>
+      <h3 style="margin-bottom:14px">{short}</h3>
+      {paras}
+    </div>
+  </div>
 </div></section>
 
-<section class="band"><div class="wrap" style="max-width:880px">
+<section class="band"><div class="wrap" style="max-width:960px">
   <h2 class="section-title reveal">Engineering Approach</h2>
   <p class="section-sub reveal">{approach}</p>
   <h3 class="reveal" style="margin:34px 0 6px">Key Solutions Include</h3>
   <ul class="check-list reveal">{sol}</ul>
 </div></section>
 
-<section><div class="wrap" style="max-width:880px">
+<section><div class="wrap" style="max-width:960px">
   <div class="grid g2">
-    <div class="reveal"><h3 style="margin-bottom:6px">Real-World Challenges Addressed</h3>
+    <div class="tcard reveal"><h3 style="margin-bottom:12px;color:var(--g700)">Real-World Challenges Addressed</h3>
       <ul class="check-list">{cha}</ul></div>
-    <div class="reveal"><h3 style="margin-bottom:6px">Application Scope</h3>
+    <div class="tcard reveal"><h3 style="margin-bottom:12px;color:var(--g700)">Application Scope</h3>
       <ul class="check-list">{sco}</ul></div>
   </div>
 </div></section>
