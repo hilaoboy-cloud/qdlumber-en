@@ -105,9 +105,15 @@ def header_zh(rel, slug=""):
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}zh/applications/#rfq">获取报价</a>
       <div class="lang-switch">
-        <a href="{en_target}">EN</a>
+        <a class="lang-btn" href="{en_target}" aria-label="English">
+          <img src="{rel}assets/img/flag-us.svg" alt="English" width="18" height="13.5" class="flag-icon">
+          <span>EN</span>
+        </a>
         <span class="sep">/</span>
-        <a class="active" href="#">中文</a>
+        <a class="lang-btn active" href="#" aria-label="中文版">
+          <img src="{rel}assets/img/flag-cn.svg" alt="中文版" width="18" height="13.5" class="flag-icon">
+          <span>中文</span>
+        </a>
       </div>
     </nav>
   </div>
@@ -517,25 +523,46 @@ def build_capabilities_zh():
 def build_about_zh():
     rel = "../../"
     steps = [
-        ("01", "需求确认",
-         "与客户沟通包装设备尺寸、单重、重心位置、装卸方式及运输目的地等基础信息。"),
-        ("02", "图纸与规格审核",
-         "审核客户提供的图纸与技术要求，确认材质要求、承载结构及接口配合尺寸。"),
-        ("03", "材料与工艺规划",
-         "确定用木方、胶合板、紧固件及缓冲辅料清单，排定加工工艺与生产批次计划。"),
-        ("04", "生产与组装",
-         "按照图纸规格完成精确下料、锯切、开槽、钻孔及箱体框架预制组装。"),
-        ("05", "质量检验",
-         "检查箱体尺寸公差、紧固连接牢固度、木材含水率及 IPPC 标识规范性。"),
-        ("06", "包装与出运准备",
-         "按要求配置防潮膜、缓冲衬垫，落实标识贴附及集装箱配载装载准备。"),
-        ("07", "交付协调",
-         "根据客户出运节点安排物流承运与现场交接，保障项目按计划准时推进。"),
+        ("01", "需求确认", "尺寸重量与工况", "about-engineering-design.webp",
+         "与客户沟通包装设备尺寸、单重、重心位置、装卸方式及运输目的地等基础信息。", "基础信息确认 ➔"),
+        ("02", "图纸审核", "CAD图纸公差复核", "values-precision.webp",
+         "审核客户提供的图纸与技术要求，确认材质要求、承载结构及接口配合尺寸。", "技术规格校验 ➔"),
+        ("03", "工艺规划", "选材下料与排产", "about-material-selection.webp",
+         "确定用木方、胶合板、紧固件及缓冲辅料清单，排定加工工艺与生产批次计划。", "生产排期与工艺 ➔"),
+        ("04", "生产组装", "数控锯切箱体预制", "about-precision-processing.webp",
+         "按照图纸规格完成精确下料、锯切、开槽、钻孔及箱体框架预制组装。", "精准下料组装 ➔"),
+        ("05", "质量检验", "全工序质检查验", "about-quality-inspection.webp",
+         "检查箱体尺寸公差、紧固连接牢固度、木材含水率及 IPPC 标识规范性。", "出厂品质复核 ➔"),
+        ("06", "包装准备", "防护打包配载装柜", "about-packaging-logistics.webp",
+         "按要求配置防潮膜、缓冲衬垫，落实标识贴附及集装箱配载装载准备。", "出口合规包装 ➔"),
+        ("07", "交付协调", "准时物流交接", "about-delivery-support.webp",
+         "根据客户出运节点安排物流承运与现场交接，保障项目按计划准时推进。", "交付与后续协同 ✓"),
     ]
-    step_html = "\n".join(
-        f'''  <div class="step reveal"><div class="n">{n}</div>
-    <div class="bd"><h3>{t}</h3><p>{d}</p></div></div>'''
-        for n, t, d in steps)
+
+    pipeline_steps = "\n".join(
+        f'''    <div class="pipeline-step">
+      <div class="p-num">{n}</div>
+      <div class="p-title">{t}</div>
+      <div class="p-sub">{sub}</div>
+    </div>'''
+        for n, t, sub, _, _, _ in steps)
+
+    flow_cards = "\n".join(
+        f'''    <div class="flow-card reveal">
+      <div class="flow-img">
+        <img src="{rel}assets/img/{img}" alt="{t} - 青岛拉博尔包装" loading="lazy" width="600" height="375">
+        <span class="flow-badge">阶段 {n}</span>
+      </div>
+      <div class="flow-body">
+        <h3>{t}</h3>
+        <p>{d}</p>
+        <div class="flow-footer">
+          <span>{sub}</span>
+          <span>{footer_tag}</span>
+        </div>
+      </div>
+    </div>'''
+        for n, t, sub, img, d, footer_tag in steps)
 
     body = f"""
 <div class="page-hero"><div class="wrap">
@@ -598,9 +625,23 @@ def build_about_zh():
 </div></section>
 
 <section class="band"><div class="wrap">
-  <h2 class="section-title reveal">制造与项目协作流程</h2>
-  <p class="section-sub reveal">从需求确认到出运交付的七个规范化执行环节。</p>
-{step_html}
+  <div style="text-align:center;max-width:820px;margin:0 auto">
+    <span class="kicker">全流程受控执行</span>
+    <h2 class="section-title reveal">制造与项目协作流程</h2>
+    <p class="section-sub reveal">从图纸对接到出运交付的七个标准化协作阶段，确保图纸符合性、批次一致性与出口合规。</p>
+  </div>
+
+  <div class="flowchart-wrap">
+    <!-- 顶层流程示意图 -->
+    <div class="pipeline-track reveal">
+{pipeline_steps}
+    </div>
+
+    <!-- 阶段图文详情卡片 -->
+    <div class="flow-cards-grid">
+{flow_cards}
+    </div>
+  </div>
 </div></section>
 """ + cta_band_zh(rel, "提交图纸或技术要求",
                   "请介绍您的产品、包装要求及出运目的地。我们将评估您的询价，并与您沟通后续事宜。")

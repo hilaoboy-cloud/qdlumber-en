@@ -104,9 +104,15 @@ def header(rel, slug=""):
         <span class="drop">{ind_links}</span></span>
       <a class="nav-cta" href="{rel}applications/#rfq">Request a Quote</a>
       <div class="lang-switch">
-        <a class="active" href="#">EN</a>
+        <a class="lang-btn active" href="#" aria-label="English">
+          <img src="{rel}assets/img/flag-us.svg" alt="English" width="18" height="13.5" class="flag-icon">
+          <span>EN</span>
+        </a>
         <span class="sep">/</span>
-        <a href="{zh_target}">中文</a>
+        <a class="lang-btn" href="{zh_target}" aria-label="中文版">
+          <img src="{rel}assets/img/flag-cn.svg" alt="中文版" width="18" height="13.5" class="flag-icon">
+          <span>中文</span>
+        </a>
       </div>
     </nav>
   </div>
@@ -516,25 +522,46 @@ def build_capabilities():
 def build_about():
     rel = "../"
     steps = [
-        ("01", "Requirement Review",
-         "Confirming equipment dimensions, weight, handling methods, shipment routes and destination requirements."),
-        ("02", "Drawing &amp; Specification Review",
-         "Reviewing customer drawings and technical specifications to establish manufacturing parameters."),
-        ("03", "Material &amp; Process Planning",
-         "Selecting suitable timber, plywood, fasteners, protective liners and production schedules."),
-        ("04", "Manufacturing &amp; Assembly",
-         "Precision cutting, panel processing, framing and component assembly according to verified drawings."),
-        ("05", "Quality Inspection",
-         "Verifying dimensional accuracy, fastener placement, structural strength and IPPC mark clarity."),
-        ("06", "Packing &amp; Shipment Preparation",
-         "Protective wrapping, labeling, export documentation coordination and container loading preparation."),
-        ("07", "Delivery Coordination",
-         "Coordinating dispatch and logistics handover according to agreed project schedules."),
+        ("01", "Requirement Review", "Dimensions & Load", "about-engineering-design.webp",
+         "Confirming equipment dimensions, weight, handling methods, shipment routes and destination requirements.", "Initial Review ➔"),
+        ("02", "Drawing Review", "CAD & Tolerances", "values-precision.webp",
+         "Reviewing customer drawings and technical specifications to establish manufacturing parameters.", "Technical Validation ➔"),
+        ("03", "Process Planning", "Materials & Schedule", "about-material-selection.webp",
+         "Selecting suitable timber, plywood, fasteners, protective liners and production schedules.", "Process Planning ➔"),
+        ("04", "Fabrication & Assembly", "Cutting & Framing", "about-precision-processing.webp",
+         "Precision cutting, panel processing, framing and component assembly according to verified drawings.", "Production Execution ➔"),
+        ("05", "Quality Inspection", "In-Process Verification", "about-quality-inspection.webp",
+         "Verifying dimensional accuracy, fastener placement, structural strength and IPPC mark clarity.", "Quality Verification ➔"),
+        ("06", "Packing & Preparation", "ISPM 15 & Packaging", "about-packaging-logistics.webp",
+         "Protective wrapping, labeling, export documentation coordination and container loading preparation.", "Export Preparation ➔"),
+        ("07", "Delivery Coordination", "Dispatch & Handover", "about-delivery-support.webp",
+         "Coordinating dispatch and logistics handover according to agreed project schedules.", "Project Fulfillment ✓"),
     ]
-    step_html = "\n".join(
-        f'''  <div class="step reveal"><div class="n">{n}</div>
-    <div class="bd"><h3>{t}</h3><p>{d}</p></div></div>'''
-        for n, t, d in steps)
+
+    pipeline_steps = "\n".join(
+        f'''    <div class="pipeline-step">
+      <div class="p-num">{n}</div>
+      <div class="p-title">{t}</div>
+      <div class="p-sub">{sub}</div>
+    </div>'''
+        for n, t, sub, _, _, _ in steps)
+
+    flow_cards = "\n".join(
+        f'''    <div class="flow-card reveal">
+      <div class="flow-img">
+        <img src="{rel}assets/img/{img}" alt="{t} - Qingdao Lumber &amp; Packaging" loading="lazy" width="600" height="375">
+        <span class="flow-badge">STEP {n}</span>
+      </div>
+      <div class="flow-body">
+        <h3>{t}</h3>
+        <p>{d}</p>
+        <div class="flow-footer">
+          <span>{sub}</span>
+          <span>{footer_tag}</span>
+        </div>
+      </div>
+    </div>'''
+        for n, t, sub, img, d, footer_tag in steps)
 
     body = f"""
 <div class="page-hero"><div class="wrap">
@@ -597,9 +624,23 @@ def build_about():
 </div></section>
 
 <section class="band"><div class="wrap">
-  <h2 class="section-title reveal">Manufacturing &amp; Project Workflow</h2>
-  <p class="section-sub reveal">Seven practical steps from requirement confirmation to shipment handover.</p>
-{step_html}
+  <div style="text-align:center;max-width:820px;margin:0 auto">
+    <span class="kicker">END-TO-END PROCESS CONTROL</span>
+    <h2 class="section-title reveal">Manufacturing &amp; Project Workflow</h2>
+    <p class="section-sub reveal">A structured 7-stage process flow ensuring drawing compliance, batch consistency, and export readiness from inquiry to delivery.</p>
+  </div>
+
+  <div class="flowchart-wrap">
+    <!-- Visual Pipeline Diagram -->
+    <div class="pipeline-track reveal">
+{pipeline_steps}
+    </div>
+
+    <!-- Step-by-Step Visual Cards -->
+    <div class="flow-cards-grid">
+{flow_cards}
+    </div>
+  </div>
 </div></section>
 """ + cta_band(rel, "Work With an OEM Packaging Partner",
                "Tell us about your product, packaging requirements and shipment destination. We will review your inquiry and follow up regarding the next steps.")

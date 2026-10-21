@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 480" width="24" height="18" style="border-radius:2px;box-shadow:0 0 1px rgba(0,0,0,0.3);vertical-align:middle;display:inline-block;">
+<path fill="#bd3d44" d="M0 0h640v480H0z"/>
+<path stroke="#fff" stroke-width="37" d="M0 55.5h640M0 129.5h640M0 203.5h640M0 277.5h640M0 351.5h640M0 425.5h640"/>
+<path fill="#192f5d" d="M0 0h260v260H0z"/>
+<marker id="us-a" markerWidth="1" markerHeight="1">
+<path fill="#fff" d="m14 0 9 27-23-17h28L5 27z"/>
+</marker>
+<g fill="#fff">
+<g id="us-b">
+<path id="us-s" d="m18 8 3.5 10.7-9.2-6.7h11.4L14.5 18.7z"/>
+<use href="#us-s" x="38"/>
+<use href="#us-s" x="76"/>
+<use href="#us-s" x="114"/>
+<use href="#us-s" x="152"/>
+<use href="#us-s" x="190"/>
+</g>
+<use href="#us-b" y="46"/>
+<use href="#us-b" y="92"/>
+<use href="#us-b" y="138"/>
+<use href="#us-b" y="184"/>
+<use href="#us-b" x="19" y="23"/>
+<use href="#us-b" x="19" y="69"/>
+<use href="#us-b" x="19" y="115"/>
+<use href="#us-b" x="19" y="161"/>
+</g>
+</svg>
